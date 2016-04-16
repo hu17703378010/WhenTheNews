@@ -37,6 +37,7 @@
 		C22127A81CC1273A00614944 /* NSString+Html.m in Sources */ = {isa = PBXBuildFile; fileRef = C22127A61CC1273A00614944 /* NSString+Html.m */; settings = {ASSET_TAGS = (); }; };
 		C22127A91CC1273A00614944 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = C22127A71CC1273A00614944 /* style.css */; settings = {ASSET_TAGS = (); }; };
 		C22127AC1CC1276500614944 /* AllCodeClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22127AB1CC1276500614944 /* AllCodeClassViewController.m */; settings = {ASSET_TAGS = (); }; };
+		C22284621CC1E08A00B6730C /* VideoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22284611CC1E08A00B6730C /* VideoViewCell.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,8 @@
 		C22127A71CC1273A00614944 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		C22127AA1CC1276500614944 /* AllCodeClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllCodeClassViewController.h; sourceTree = "<group>"; };
 		C22127AB1CC1276500614944 /* AllCodeClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllCodeClassViewController.m; sourceTree = "<group>"; };
+		C22284601CC1E08A00B6730C /* VideoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewCell.h; sourceTree = "<group>"; };
+		C22284611CC1E08A00B6730C /* VideoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewCell.m; sourceTree = "<group>"; };
 		CBC89A3540F3115F0EECE68B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -416,6 +419,8 @@
 			children = (
 				C22127541CC115F300614944 /* VideoView.h */,
 				C22127551CC115F300614944 /* VideoView.m */,
+				C22284601CC1E08A00B6730C /* VideoViewCell.h */,
+				C22284611CC1E08A00B6730C /* VideoViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -578,6 +583,7 @@
 				C22127651CC1163200614944 /* OneSelfModel.m in Sources */,
 				C22127681CC1163E00614944 /* DataBaseManager.m in Sources */,
 				C221274A1CC115B300614944 /* NewsModel.m in Sources */,
+				C22284621CC1E08A00B6730C /* VideoViewCell.m in Sources */,
 				C22126F51CC10B8A00614944 /* main.m in Sources */,
 				C22127461CC1111300614944 /* OneSelfViewController.m in Sources */,
 				C22127501CC115DE00614944 /* ReadingView.m in Sources */,
