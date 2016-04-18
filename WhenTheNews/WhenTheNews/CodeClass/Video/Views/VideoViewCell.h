@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "VideoModel.h"
 
+@protocol VideoViewCellDelegate <NSObject>
+
+- (void)getVideoURL:(NSString *)url title:(NSString *)title;
+
+@end
+
 @interface VideoViewCell : UITableViewCell
 
 @property (nonatomic,strong) UIImageView *coverImage;
@@ -19,6 +25,9 @@
 
 @property (nonatomic,strong) VideoModel *model;
 
-- (void)setDataWithModel:(VideoModel *)model;
+
+@property(nonatomic,assign)id<VideoViewCellDelegate>delegate;
+
+
 
 @end

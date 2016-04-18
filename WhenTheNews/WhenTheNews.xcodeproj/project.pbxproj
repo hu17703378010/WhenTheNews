@@ -38,6 +38,7 @@
 		C22127A91CC1273A00614944 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = C22127A71CC1273A00614944 /* style.css */; settings = {ASSET_TAGS = (); }; };
 		C22127AC1CC1276500614944 /* AllCodeClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22127AB1CC1276500614944 /* AllCodeClassViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C22284621CC1E08A00B6730C /* VideoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22284611CC1E08A00B6730C /* VideoViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		C2444F771CC4717A0045718A /* bofang.png in Resources */ = {isa = PBXBuildFile; fileRef = C2444F761CC4717A0045718A /* bofang.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +100,7 @@
 		C22127AB1CC1276500614944 /* AllCodeClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllCodeClassViewController.m; sourceTree = "<group>"; };
 		C22284601CC1E08A00B6730C /* VideoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewCell.h; sourceTree = "<group>"; };
 		C22284611CC1E08A00B6730C /* VideoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewCell.m; sourceTree = "<group>"; };
+		C2444F761CC4717A0045718A /* bofang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bofang.png; sourceTree = "<group>"; };
 		CBC89A3540F3115F0EECE68B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -398,6 +400,7 @@
 		C22127261CC1103F00614944 /* Conrtoller */ = {
 			isa = PBXGroup;
 			children = (
+				C2444F761CC4717A0045718A /* bofang.png */,
 				C22127391CC110EB00614944 /* VideoViewController.h */,
 				C221273A1CC110EB00614944 /* VideoViewController.m */,
 				C221273B1CC110EB00614944 /* VideoViewController.xib */,
@@ -504,6 +507,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2444F771CC4717A0045718A /* bofang.png in Resources */,
 				C22127031CC10B8A00614944 /* LaunchScreen.storyboard in Resources */,
 				C22127A91CC1273A00614944 /* style.css in Resources */,
 				C22127351CC110C100614944 /* ReadingViewController.xib in Resources */,
