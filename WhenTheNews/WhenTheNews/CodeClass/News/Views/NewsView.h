@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewsView : UIView
+#import "ImgAndContextTableViewCell.h"
+#import "ImgAndTitleTableViewCell.h"
+#import "MoreImgTableViewCell.h"
+
+@interface NewsView : UIView <UITableViewDelegate,UITableViewDataSource>
+
+@property(nonatomic,strong)UITableView *contextTable;
 
 @end

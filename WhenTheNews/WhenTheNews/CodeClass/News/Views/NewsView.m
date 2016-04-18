@@ -8,7 +8,29 @@
 
 #import "NewsView.h"
 
+#import "ImgAndContextTableViewCell.h"
+#import "ImgAndTitleTableViewCell.h"
+#import "MoreImgTableViewCell.h"
+
+
 @implementation NewsView
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (void)setMoreViewInView{
+   
+}
+
+
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
