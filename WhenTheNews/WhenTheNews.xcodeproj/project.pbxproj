@@ -23,8 +23,6 @@
 		C22127421CC110FE00614944 /* TopicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22127401CC110FE00614944 /* TopicViewController.xib */; };
 		C22127461CC1111300614944 /* OneSelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22127441CC1111300614944 /* OneSelfViewController.m */; };
 		C22127471CC1111300614944 /* OneSelfViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22127451CC1111300614944 /* OneSelfViewController.xib */; };
-		C221274A1CC115B300614944 /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C22127491CC115B300614944 /* NewsModel.m */; };
-		C221274D1CC115C400614944 /* NewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C221274C1CC115C400614944 /* NewsView.m */; };
 		C22127501CC115DE00614944 /* ReadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C221274F1CC115DE00614944 /* ReadingView.m */; };
 		C22127531CC115E800614944 /* TopicView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22127521CC115E800614944 /* TopicView.m */; };
 		C22127561CC115F300614944 /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22127551CC115F300614944 /* VideoView.m */; };
@@ -852,10 +850,8 @@
 				C2DA7FA01CC4CF91008B9292 /* MJRefreshAutoFooter.m in Sources */,
 				C22127681CC1163E00614944 /* DataBaseManager.m in Sources */,
 				C224708B1CC490B8001D23DE /* DetailAAndQTableViewCell.m in Sources */,
-				C221274A1CC115B300614944 /* NewsModel.m in Sources */,
 				C2A1F6CA1CC26B1000A40DCD /* TopicDetailViewController.m in Sources */,
 				C2DA7FA11CC4CF91008B9292 /* MJRefreshBackFooter.m in Sources */,
-				C221274A1CC115B300614944 /* NewsModel.m in Sources */,
 				C2DA7FB21CC4CF91008B9292 /* UIView+MJExtension.m in Sources */,
 				C22284621CC1E08A00B6730C /* VideoViewCell.m in Sources */,
 				C22470A41CC52533001D23DE /* TopicAnswerModel.m in Sources */,
@@ -873,7 +869,6 @@
 				C2DA7FAD1CC4CF91008B9292 /* MJRefreshStateHeader.m in Sources */,
 				C2DA7FAA1CC4CF91008B9292 /* MJRefreshBackStateFooter.m in Sources */,
 				C2DA7FAF1CC4CF91008B9292 /* MJRefreshConst.m in Sources */,
-				C221274D1CC115C400614944 /* NewsView.m in Sources */,
 				C2DA7FB61CC50BA1008B9292 /* CollectionTableViewController.m in Sources */,
 				C22127621CC1162900614944 /* VideoModel.m in Sources */,
 				C2DA7FA31CC4CF91008B9292 /* MJRefreshFooter.m in Sources */,
