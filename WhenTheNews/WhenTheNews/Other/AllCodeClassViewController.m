@@ -25,7 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tabBarController.hidesBottomBarWhenPushed = YES;
+
     [self setIntoViewMoreChirldViews];
 }
 - (void)setIntoViewMoreChirldViews{
