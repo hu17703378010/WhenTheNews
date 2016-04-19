@@ -55,7 +55,7 @@
 //黑科技
 #define BLACKSCIENCEANDTECHNOLOGY_URL @"T1457069387259"
 //八卦
-#define GOSSIP_URL @"T1457069387259"
+#define GOSSIP_URL @"T1457069261743"
 
 
 /****************************** 话题 ******************************/

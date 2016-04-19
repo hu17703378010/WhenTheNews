@@ -12,6 +12,7 @@
 @interface AppDelegate ()
 
 @end
+static AppDelegate *_appDelegate;
 
 @implementation AppDelegate
 
@@ -24,10 +25,18 @@
     [self.window makeKeyAndVisible];
     AllCodeClassViewController *allCor = [[AllCodeClassViewController alloc]init];
     self.window.rootViewController = allCor;
-    
+    _appDelegate = self;
+    _redView = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _redView.backgroundColor = [UIColor blackColor];
+    _redView.alpha = 0.0;
+
     
     
     return YES;
+}
+
++ (AppDelegate *)shareAppDelegate{
+    return _appDelegate;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
