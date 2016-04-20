@@ -224,6 +224,7 @@
 }
 
 - (void)leftAction {
+    [self.naLabel removeFromSuperview];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -394,7 +395,7 @@
 }
 
 
-#pragma mark ---------------- UIScrollDelegate
+#pragma mark ---------------- UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat offset = scrollView.contentOffset.y - 44;
@@ -413,6 +414,7 @@
     }
     self.backView.alpha = alpha;
 }
+
 
 
 - (void)didReceiveMemoryWarning {
