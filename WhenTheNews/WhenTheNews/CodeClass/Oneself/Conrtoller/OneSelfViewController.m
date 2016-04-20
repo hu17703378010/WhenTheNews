@@ -201,7 +201,7 @@
     
     
     if (sender.on) {
-        [AppDelegate  shareAppDelegate].redView.alpha = 1;
+        [AppDelegate  shareAppDelegate].redView.alpha = 0.5;
     }else{
         [AppDelegate shareAppDelegate].redView.alpha = 0.0;
     }
