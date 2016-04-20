@@ -11,6 +11,7 @@
 #import "CollectionTableViewController.h"
 #import "SDImageCache.h"
 #import "ActivityView.h"
+#import "CacheModel.h"
 
 @interface OneSelfViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>{
     NSUInteger size;
@@ -21,15 +22,25 @@
 @property(nonatomic,strong) UILabel *cache;
 
 @property(nonatomic,strong) NSArray *NameArray;
+
+@property (nonatomic,strong)CacheModel *model;
 @end
 
 
 @implementation OneSelfViewController
 
+- (CacheModel *)model{
+    if (!_model) {
+        _model = [[CacheModel alloc]init];
+        }
+    return _model;
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
     size =[[SDImageCache sharedImageCache] getSize]/1024.0/1024.0;//缓存-- MB
+    [self.model addObserver:self forKeyPath:@"cache" options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) context:nil];
+    self.model.cache = [NSString stringWithFormat:@"%luMB",(unsigned long)size];
     
 }
 
@@ -80,7 +91,7 @@
             self.cache = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width - 70, self.tableView.rowHeight / 2 - 13 , 60, 25)];
             
            self.cache.textAlignment = NSTextAlignmentCenter;
-            self.cache.text = [NSString stringWithFormat:@"%luMB",(unsigned long)size];
+            self.cache.text = _model.cache;
         
             [cell addSubview:self.cache];
             
@@ -125,11 +136,7 @@
         
     }];
     UIAlertAction *ensure = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action){
-//        
-//        [[SDImageCache sharedImageCache]clearDisk];
-//        //清理完刷新tableView
-//        size =[[SDImageCache sharedImageCache] getSize]/1024.0/1024.0;//得到新的缓存缓存-- MB
-//        [self.tableView reloadData];
+
         [self clearCache];
         
     }];
@@ -162,22 +169,6 @@
 
 - (void)clear{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-//        NSLog(@"%@", cachPath);
-//        
-//        NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachPath];
-//        NSLog(@"files :%lu",[files count]);
-//        for (NSString *p in files) {
-//            NSError *error;
-//            NSString *path = [cachPath stringByAppendingPathComponent:p];
-//            if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-//                [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
-//            }
-//        }
-//        [self performSelectorOnMainThread:@selector(clearCacheSuccess) withObject:nil waitUntilDone:YES];}
-//                   );
-    
-
         [[SDImageCache sharedImageCache]clearDisk];
         size = [[SDImageCache sharedImageCache]getSize]/1024.0/1024.0;
         [self.tableView reloadData];
@@ -196,10 +187,15 @@
     ActivityView *aView = [[ActivityView alloc] initWithFrame:CGRectMake(ScreenWidth / 2 - 60, ScreenHeight / 2 - 120, 120, 120)];
     [aView endClearView];
     [self.view addSubview:aView];
-    
+      
+    _model.cache = @"0.00M";
 });
+}
 
-
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"cache"]) {
+        _cache.text = _model.cache;
+    }
 }
 // 护眼模式
 - (void)nightStyle:(UISwitch *)sender

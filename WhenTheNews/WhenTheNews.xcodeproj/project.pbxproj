@@ -11,6 +11,7 @@
 		C207E3221CC70C86008225A9 /* fly.png in Resources */ = {isa = PBXBuildFile; fileRef = C207E3211CC70C86008225A9 /* fly.png */; settings = {ASSET_TAGS = (); }; };
 		C207E3281CC71ECE008225A9 /* readFristCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C207E3271CC71ECE008225A9 /* readFristCell.m */; settings = {ASSET_TAGS = (); }; };
 		C207E32B1CC71EF2008225A9 /* ReadScendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C207E32A1CC71EF2008225A9 /* ReadScendCell.m */; settings = {ASSET_TAGS = (); }; };
+		C207E3701CC78044008225A9 /* CacheModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C207E36F1CC78044008225A9 /* CacheModel.m */; settings = {ASSET_TAGS = (); }; };
 		C22126F51CC10B8A00614944 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C22126F41CC10B8A00614944 /* main.m */; };
 		C22126FE1CC10B8A00614944 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C22126FC1CC10B8A00614944 /* Main.storyboard */; };
 		C22127001CC10B8A00614944 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C22126FF1CC10B8A00614944 /* Assets.xcassets */; };
@@ -98,6 +99,8 @@
 		C207E3271CC71ECE008225A9 /* readFristCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = readFristCell.m; sourceTree = "<group>"; };
 		C207E3291CC71EF2008225A9 /* ReadScendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadScendCell.h; sourceTree = "<group>"; };
 		C207E32A1CC71EF2008225A9 /* ReadScendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadScendCell.m; sourceTree = "<group>"; };
+		C207E36E1CC78044008225A9 /* CacheModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheModel.h; sourceTree = "<group>"; };
+		C207E36F1CC78044008225A9 /* CacheModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheModel.m; sourceTree = "<group>"; };
 		C214587C1CC1CE150034944F /* UrlHeadersDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UrlHeadersDefine.h; sourceTree = "<group>"; };
 		C214587D1CC1CE4C0034944F /* ConstantsDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstantsDefine.h; sourceTree = "<group>"; };
 		C214587E1CC1CE720034944F /* EfficientDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EfficientDefine.h; sourceTree = "<group>"; };
@@ -456,6 +459,8 @@
 				C207E3211CC70C86008225A9 /* fly.png */,
 				C2D74B5E1CC6451A0062B01F /* ActivityView.h */,
 				C2D74B5F1CC6451A0062B01F /* ActivityView.m */,
+				C207E36E1CC78044008225A9 /* CacheModel.h */,
+				C207E36F1CC78044008225A9 /* CacheModel.m */,
 			);
 			path = Conrtoller;
 			sourceTree = "<group>";
@@ -903,6 +908,7 @@
 				C24DD2431CC4B1C3004A10CD /* ImgAndTitleTableViewCell.m in Sources */,
 				C24DD2451CC4B1C3004A10CD /* MoreImgTableViewCell.m in Sources */,
 				C221274A1CC115B300614944 /* NewsModel.m in Sources */,
+				C207E3701CC78044008225A9 /* CacheModel.m in Sources */,
 				C2DA7FB21CC4CF91008B9292 /* UIView+MJExtension.m in Sources */,
 				C24DD2411CC4B1C3004A10CD /* ImgAndContextTableViewCell.m in Sources */,
 				C2DA7FB21CC4CF91008B9292 /* UIView+MJExtension.m in Sources */,

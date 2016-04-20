@@ -8,8 +8,20 @@
 
 #import "ReadScendCell.h"
 #import <UIImageView+WebCache.h>
+
+@interface ReadScendCell()
+
+@property (nonatomic,strong) NSArray *imgArr;
+
+@end
 @implementation ReadScendCell
 
+- (NSArray *)imgArr{
+    if (_imgArr) {
+        _imgArr = [NSArray array];
+    }
+    return _imgArr;
+}
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.imgView = [[UIImageView alloc]init];
@@ -34,6 +46,12 @@
     _model = model;
     
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:model.img]];
+    
+    self.imgArr = model.imgnewextra;
+    for (NSDictionary *dic in self.imgArr) {
+    }
+    
+    
     
 }
 
