@@ -12,8 +12,9 @@
 #import "ImgAndTitleTableViewCell.h"
 #import "MoreImgTableViewCell.h"
 
-@interface NewsView : UIView <UITableViewDelegate,UITableViewDataSource>
+@interface NewsView : UIView 
+
 
 @property(nonatomic,strong)UITableView *contextTable;
-
+- (void)requesData:(NSString *)typeStr;
 @end

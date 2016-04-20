@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class NewsModel;
 @interface ImgAndContextTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-
+- (void)setModelContentToCell:(NewsModel *)model;
 @end
