@@ -7,8 +7,19 @@
 //
 
 #import "MoreImgTableViewCell.h"
+#import "NewsModel.h"
+#import <UIImageView+WebCache.h>
 
 @implementation MoreImgTableViewCell
+
+- (void)setModelContentToCell:(NewsModel *)model{
+    self.titleLabel.text = model.title;
+    [self.firstimg sd_setImageWithURL:[NSURL URLWithString:model.imgsrc] placeholderImage:[UIImage imageNamed:@""]];
+    [self.secondImg sd_setImageWithURL:[NSURL URLWithString:model.imgextra[0][@"imgsrc"]] placeholderImage:[UIImage imageNamed:@""]];
+    [self.thirstImg sd_setImageWithURL:[NSURL URLWithString:model.imgextra[1][@"imgsrc"]] placeholderImage:[UIImage imageNamed:@""]];
+    self.timeLabel.text = [NSString stringWithFormat:@"%@回复",model.replyCount];
+
+}
 
 - (void)awakeFromNib {
     // Initialization code

@@ -84,7 +84,7 @@
     
     [self loadScrollView];
     [self loadHeaderView];
-    //    [self requestData];
+ 
     
 }
 
@@ -132,10 +132,7 @@
 #pragma mark ------ 上拉
 -(void)footRefesh{
     
-    
     self.page = [self.pageArray[_currPage] integerValue];
-    
-    
     self.page +=10 ;
     [self requestData];
     
@@ -289,7 +286,6 @@
             //KVC
             VideoModel *model = [[VideoModel alloc]init];
             [model setValuesForKeysWithDictionary:dic2];
-            //            [wSelf.listArray addObject:model];
             [wSelf.arrayArr[_currPage] addObject:model];
             
         }

@@ -7,14 +7,21 @@
 //
 
 #import "ImgAndContextTableViewCell.h"
+#import "NewsModel.h"
+#import <UIImageView+WebCache.h>
 
 @implementation ImgAndContextTableViewCell
 
-
-
-
 - (void)awakeFromNib {
     // Initialization code
+}
+
+
+- (void)setModelContentToCell:(NewsModel *)model{
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:model.imgsrc] placeholderImage:[UIImage imageNamed:@""]];
+    self.titleLabel.text = model.title;
+    self.contextLabel.text = model.digest;
+    self.timeLabel.text = [NSString stringWithFormat:@"%@回复",model.replyCount];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
