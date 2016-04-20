@@ -39,6 +39,11 @@
     self.navigationItem.title = @"设置";
     
     self.NameArray = @[@"收藏",@"清除缓存",@"护眼模式",@"免责声明",@"版本号"];
+   
+    [self loadHeaderView];
+}
+
+- (void)loadHeaderView{
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight - 44 - 64) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -47,16 +52,11 @@
     self.tableView.bounces = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.tableView];
-   
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, (ScreenHeight - 44 - 64)  / 2)];
     
-    UIImageView *headerImage = [[UIImageView alloc]initWithFrame:headerView.bounds];
-    headerImage.image = [UIImage imageNamed:@""];
-    [headerView addSubview:headerImage];
-    headerView.backgroundColor = [UIColor redColor];
+    UIImageView *headerImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, (ScreenHeight - 44 - 64)  / 2)];
+    headerImage.image = [UIImage imageNamed:@"fly.png"];
     
-    self.tableView.tableHeaderView = headerView;
-    
+    self.tableView.tableHeaderView = headerImage;
 }
 
 
@@ -72,8 +72,8 @@
         cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:ident];
     }
         if (indexPath.row == 4) {
-            UILabel *version = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, self.tableView.rowHeight / 2 - 13 , 35, 25)];
-            version.text = @"V1.0";
+            UILabel *version = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 70, self.tableView.rowHeight / 2 - 13 , 60, 25)];
+            version.text = @"V1.01";
             version.textAlignment = NSTextAlignmentCenter;
             [cell addSubview:version];
         } else if (indexPath.row == 1){
@@ -105,7 +105,7 @@
         CollectionTableViewController *collection = [[CollectionTableViewController alloc]initWithStyle:(UITableViewStylePlain)];
         collection.navigationItem.title = @"收藏列表";
         [collection setHidesBottomBarWhenPushed:YES];
-        
+      
         [self.navigationController pushViewController:collection animated:YES];
         
     }else if (indexPath.row == 1){
@@ -125,11 +125,12 @@
         
     }];
     UIAlertAction *ensure = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action){
-        
-        [[SDImageCache sharedImageCache]clearDisk];
-        //清理完刷新tableView
-        size =[[SDImageCache sharedImageCache] getSize]/1024.0/1024.0;//得到新的缓存缓存-- MB
-        [self.tableView reloadData];
+//        
+//        [[SDImageCache sharedImageCache]clearDisk];
+//        //清理完刷新tableView
+//        size =[[SDImageCache sharedImageCache] getSize]/1024.0/1024.0;//得到新的缓存缓存-- MB
+//        [self.tableView reloadData];
+        [self clearCache];
         
     }];
     [alertController addAction:cancel];
@@ -160,31 +161,31 @@
 }
 
 - (void)clear{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSLog(@"%@", cachPath);
-        
-        NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachPath];
-        NSLog(@"files :%lu",[files count]);
-        for (NSString *p in files) {
-            NSError *error;
-            NSString *path = [cachPath stringByAppendingPathComponent:p];
-            if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-                [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
-            }
-        }
-        [self performSelectorOnMainThread:@selector(clearCacheSuccess) withObject:nil waitUntilDone:YES];}
-                   );
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//        NSLog(@"%@", cachPath);
+//        
+//        NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachPath];
+//        NSLog(@"files :%lu",[files count]);
+//        for (NSString *p in files) {
+//            NSError *error;
+//            NSString *path = [cachPath stringByAppendingPathComponent:p];
+//            if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+//                [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+//            }
+//        }
+//        [self performSelectorOnMainThread:@selector(clearCacheSuccess) withObject:nil waitUntilDone:YES];}
+//                   );
     
 
-//        [[SDImageCache sharedImageCache]clearDisk];
-//        size = [[SDImageCache sharedImageCache]getSize]/1024.0/1024.0;
-//        [self.tableView reloadData];
+        [[SDImageCache sharedImageCache]clearDisk];
+        size = [[SDImageCache sharedImageCache]getSize]/1024.0/1024.0;
+        [self.tableView reloadData];
     
         
- //   });
-//    [self performSelectorOnMainThread:@selector(clearCacheSuccess) withObject:nil waitUntilDone:YES];
-//  
+    });
+    [self performSelectorOnMainThread:@selector(clearCacheSuccess) withObject:nil waitUntilDone:YES];
+  
 
 
 }

@@ -30,8 +30,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -64) forBarMetrics:UIBarMetricsDefault];
     
-    
+  
 }
 
 - (void)didReceiveMemoryWarning {
