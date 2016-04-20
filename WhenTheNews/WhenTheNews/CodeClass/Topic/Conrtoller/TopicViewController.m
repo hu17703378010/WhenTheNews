@@ -19,29 +19,39 @@
 #import "TopicDetailViewController.h"
 
 #import "AFNetWorking.h"
-#import "AFNetworkActivityIndicatorManager.h"
+#import "MJRefresh.h"
 
 #define CELL @"topic"
 #define TOPICURL @"http://c.m.163.com/newstopic/list/expert/0-10.html"
 
 @interface TopicViewController ()<UITableViewDataSource, UITableViewDelegate>
+{
+    BOOL isRefresh;
+}
 
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) AFHTTPSessionManager *session;
 @property (nonatomic,strong) NSMutableArray *dataArray;
-
+@property (nonatomic,assign) NSInteger page;
 
 @end
 
 @implementation TopicViewController
 
+- (NSMutableArray *)dataArray {
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"问吧" style:UIBarButtonItemStyleDone target:self action:@selector(leftAction:)];
-    self.navigationItem.leftBarButtonItem = leftItem;
+    self.page = 0;
     
+    self.navigationItem.title = @"问吧";
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 65) style:UITableViewStylePlain];
     [self.view addSubview:self.tableView];
     
@@ -50,13 +60,33 @@
     [self createData];
     [self.tableView registerNib:[UINib nibWithNibName:@"TopicTableViewCell" bundle:nil] forCellReuseIdentifier:CELL];
     
+    //下拉刷新 上拉加载
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headFresh)];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footFresh)];
+}
+
+- (void)headFresh {
+    self.page = 0;
+    isRefresh = YES;
+    [self createData];
+}
+
+- (void)footFresh {
+    self.page += 10;
+    [self createData];
+    [self.tableView.mj_footer endRefreshing];
 }
 
 - (void)createData {
-    self.dataArray = [NSMutableArray array];
+    //下拉刷新
+    if (isRefresh == YES) {
+        isRefresh = NO;
+        [self.dataArray removeAllObjects];
+    }
         self.session = [AFHTTPSessionManager manager];
         self.session.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"application/x-json",@"text/html", nil];
-            [self.session GET:TOPICURL parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSString *string = [NSString stringWithFormat:@"http://c.m.163.com/newstopic/list/expert/%ld-10.html", self.page];
+            [self.session GET:string parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
                 });
@@ -66,9 +96,13 @@
                     [model setValuesForKeysWithDictionary:dic1];
                     [self.dataArray addObject:model];
             }
+                [self.tableView reloadData];
+                [self.tableView.mj_header endRefreshing];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"error : %@", error);
-        }];
+            [self.tableView reloadData];
+            [self.tableView.mj_header endRefreshing];
+          }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

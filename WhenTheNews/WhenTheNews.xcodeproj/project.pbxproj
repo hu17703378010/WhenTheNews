@@ -77,6 +77,7 @@
 		C2DA7FB11CC4CF91008B9292 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DA7F9D1CC4CF91008B9292 /* UIScrollView+MJRefresh.m */; };
 		C2DA7FB21CC4CF91008B9292 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DA7F9F1CC4CF91008B9292 /* UIView+MJExtension.m */; };
 		C2DA7FB61CC50BA1008B9292 /* CollectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DA7FB51CC50BA1008B9292 /* CollectionTableViewController.m */; };
+		C2DC015C1CC7741D003CDE58 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2DC015B1CC7741D003CDE58 /* 0.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -206,6 +207,7 @@
 		C2DA7F9F1CC4CF91008B9292 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		C2DA7FB41CC50BA1008B9292 /* CollectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionTableViewController.h; sourceTree = "<group>"; };
 		C2DA7FB51CC50BA1008B9292 /* CollectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionTableViewController.m; sourceTree = "<group>"; };
+		C2DC015B1CC7741D003CDE58 /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
 		CBC89A3540F3115F0EECE68B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -253,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				C22470A01CC4DEE9001D23DE /* b.png */,
+				C2DC015B1CC7741D003CDE58 /* 0.jpg */,
 				C22126F21CC10B8A00614944 /* WhenTheNews */,
 				C22126F11CC10B8A00614944 /* Products */,
 				FEC2D41A7B1F6DF2F0B68193 /* Pods */,
@@ -761,6 +764,7 @@
 				C22127A91CC1273A00614944 /* style.css in Resources */,
 				C22127351CC110C100614944 /* ReadingViewController.xib in Resources */,
 				C221273D1CC110EB00614944 /* VideoViewController.xib in Resources */,
+				C2DC015C1CC7741D003CDE58 /* 0.jpg in Resources */,
 				C22127001CC10B8A00614944 /* Assets.xcassets in Resources */,
 				C22470A11CC4DEE9001D23DE /* b.png in Resources */,
 				C22126FE1CC10B8A00614944 /* Main.storyboard in Resources */,
