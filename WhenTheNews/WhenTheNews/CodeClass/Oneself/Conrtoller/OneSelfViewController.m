@@ -169,6 +169,7 @@
 
 - (void)clear{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+<<<<<<< HEAD
         [[SDImageCache sharedImageCache]clearDisk];
         size = [[SDImageCache sharedImageCache]getSize]/1024.0/1024.0;
         [self.tableView reloadData];
@@ -177,6 +178,32 @@
     });
     [self performSelectorOnMainThread:@selector(clearCacheSuccess) withObject:nil waitUntilDone:YES];
   
+=======
+        NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSLog(@"%@", cachPath);
+        
+        NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachPath];
+        NSLog(@"files :%lu",[files count]);
+        for (NSString *p in files) {
+            NSError *error;
+            NSString *path = [cachPath stringByAppendingPathComponent:p];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+                [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+            }
+        }
+        [self performSelectorOnMainThread:@selector(clearCacheSuccess) withObject:nil waitUntilDone:YES];}
+                   );
+    
+
+//        [[SDImageCache sharedImageCache]clearDisk];
+//        size = [[SDImageCache sharedImageCache]getSize]/1024.0/1024.0;
+//        [self.tableView reloadData];
+//    
+//        
+//    });
+//    [self performSelectorOnMainThread:@selector(clearCacheSuccess) withObject:nil waitUntilDone:YES];
+
+>>>>>>> 0af06ac397503cf7739095aded5d7eb3fd3e6a85
 
 
 }
