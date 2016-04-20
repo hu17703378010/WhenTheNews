@@ -8,16 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		A77CF908A3A8E0B509367CBD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC89A3540F3115F0EECE68B /* libPods.a */; };
-<<<<<<< HEAD
 		C207E3221CC70C86008225A9 /* fly.png in Resources */ = {isa = PBXBuildFile; fileRef = C207E3211CC70C86008225A9 /* fly.png */; settings = {ASSET_TAGS = (); }; };
 		C207E3281CC71ECE008225A9 /* readFristCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C207E3271CC71ECE008225A9 /* readFristCell.m */; settings = {ASSET_TAGS = (); }; };
 		C207E32B1CC71EF2008225A9 /* ReadScendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C207E32A1CC71EF2008225A9 /* ReadScendCell.m */; settings = {ASSET_TAGS = (); }; };
 		C207E3701CC78044008225A9 /* CacheModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C207E36F1CC78044008225A9 /* CacheModel.m */; settings = {ASSET_TAGS = (); }; };
-=======
 		C207E3221CC70C86008225A9 /* fly.png in Resources */ = {isa = PBXBuildFile; fileRef = C207E3211CC70C86008225A9 /* fly.png */; };
 		C207E3281CC71ECE008225A9 /* readFristCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C207E3271CC71ECE008225A9 /* readFristCell.m */; };
 		C207E32B1CC71EF2008225A9 /* ReadScendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C207E32A1CC71EF2008225A9 /* ReadScendCell.m */; };
->>>>>>> 0af06ac397503cf7739095aded5d7eb3fd3e6a85
 		C22126F51CC10B8A00614944 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C22126F41CC10B8A00614944 /* main.m */; };
 		C22126FE1CC10B8A00614944 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C22126FC1CC10B8A00614944 /* Main.storyboard */; };
 		C22127001CC10B8A00614944 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C22126FF1CC10B8A00614944 /* Assets.xcassets */; };
