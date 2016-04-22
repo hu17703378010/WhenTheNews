@@ -1,16 +1,14 @@
 //
 //  ModelForDetail.h
-//  时昼新闻
+//  WhenTheNews
 //
-//  Created by lanou3g on 15-5-3.
-//  Copyright (c) 2015年 张金城. All rights reserved.
+//  Created by lanou3g on 16/4/21.
+//  Copyright © 2016年 HCC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
 @interface ModelForDetail : NSObject
-
 @property (nonatomic,copy) NSArray * img;// 图片数组
 
 @property (nonatomic,copy) NSString * ptime;// 日期
@@ -24,6 +22,4 @@
 @property(nonatomic,copy)NSString *digest;
 
 @property(nonatomic,copy)NSString *Class;
-
-
 @end

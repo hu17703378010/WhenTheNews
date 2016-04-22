@@ -1,21 +1,16 @@
 //
 //  ModelForDetail.m
-//  时昼新闻
+//  WhenTheNews
 //
-//  Created by lanou3g on 15-5-3.
-//  Copyright (c) 2015年 张金城. All rights reserved.
+//  Created by lanou3g on 16/4/21.
+//  Copyright © 2016年 HCC. All rights reserved.
 //
 
 #import "ModelForDetail.h"
 
 @implementation ModelForDetail
-
-
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
     
 }
-
-
-
 @end
