@@ -8,15 +8,19 @@
 
 #import "DetailAAndQTableViewCell.h"
 #import <UIImageView+WebCache.h>
+#define width @"285"
+#define WIDTH CGRectGetWidth([UIScreen mainScreen].bounds)
+
 
 @interface DetailAAndQTableViewCell ()
 
-@property (nonatomic,assign) CGFloat width;
+
 @property (nonatomic,assign) CGFloat height;
 
 @end
 
 @implementation DetailAAndQTableViewCell
+
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -24,6 +28,7 @@
     }
     return self;
 }
+
 
 - (void)setupCell {
     self.userHeadImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 10, 30, 30)];
@@ -39,17 +44,37 @@
     self.userContentLabel.font = [UIFont systemFontOfSize:14];
     self.userContentLabel.numberOfLines = 0;
     [self addSubview:self.userContentLabel];
+
+    self.specialistHeadImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 10, 30, 30)];
+    self.specialistHeadImageView.layer.masksToBounds = YES;
+    self.specialistHeadImageView.backgroundColor = [UIColor redColor];
+    self.specialistHeadImageView.layer.cornerRadius = 15;
+    [self addSubview:self.specialistHeadImageView];
     
+    self.specialistNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 10, 200, 20)];
+    self.specialistNameLabel.font = [UIFont systemFontOfSize:12];
+    [self addSubview:self.specialistNameLabel];
     
-//    self.answerView = [[UIView alloc] initWithFrame:CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)]
-    
-    
+    self.answerContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 30, 285, 20)];
+    self.answerContentLabel.font = [UIFont systemFontOfSize:14];
+    self.answerContentLabel.numberOfLines = 0;
+    [self addSubview:self.answerContentLabel];
 }
 
 - (void)setDataWithModel:(TopicQuestionModel *)model {
-    [self.userHeadImageView sd_setImageWithURL:[NSURL URLWithString:model.userHeadPicUrl]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.userHeadImageView sd_setImageWithURL:[NSURL URLWithString:model.userHeadPicUrl]];
+    });
     self.userNameLabel.text = model.userName;
     self.userContentLabel.text = model.content;
+}
+
+- (void)setDataWithAnswerModel:(TopicAnswerModel *)model {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.specialistHeadImageView sd_setImageWithURL:[NSURL URLWithString:model.specialistHeadPicUrl]];
+    });
+    self.specialistNameLabel.text = model.specialistName;
+    self.answerContentLabel.text = model.content;
 }
 
 - (CGFloat)stringHeight:(NSString *)string {
@@ -58,8 +83,14 @@
 }
 
 - (void)awakeFromNib {
-    // Initialization code
+    
 }
+
+
+
+
+
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

@@ -84,7 +84,7 @@
     
     [self loadScrollView];
     [self loadHeaderView];
-    //    [self requestData];
+ 
     
 }
 
@@ -132,10 +132,7 @@
 #pragma mark ------ 上拉
 -(void)footRefesh{
     
-    
     self.page = [self.pageArray[_currPage] integerValue];
-    
-    
     self.page +=10 ;
     [self requestData];
     
@@ -272,6 +269,7 @@
     }
     NSString *typeStr =  _falseArray[_currPage];
     
+    
     NSString *string = [NSString stringWithFormat:@"http://c.3g.163.com/nc/video/Tlist/%@/%ld-10.html",typeStr,self.page];
     NSString *pag = [NSString stringWithFormat:@"%ld",self.page];
     
@@ -289,7 +287,6 @@
             //KVC
             VideoModel *model = [[VideoModel alloc]init];
             [model setValuesForKeysWithDictionary:dic2];
-            //            [wSelf.listArray addObject:model];
             [wSelf.arrayArr[_currPage] addObject:model];
             
         }

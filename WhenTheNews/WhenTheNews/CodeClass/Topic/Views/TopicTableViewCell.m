@@ -20,8 +20,10 @@
 - (void)setDataWithModel:(TopicModel *)model {
     NSLog(@"name = %@, picurl = %@, headima = %@", model.name, model.picurl, model.headpicurl);
     self.nameAndtitleLabel.text = [NSString stringWithFormat:@"%@ / %@", model.name, model.title];
-    [self.picImageView sd_setImageWithURL:[NSURL URLWithString:model.picurl]];
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.headpicurl]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.picImageView sd_setImageWithURL:[NSURL URLWithString:model.picurl]];
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.headpicurl]];
+    });
     self.aliasLabel.text = model.alias;
     self.aliasLabel.numberOfLines = 0;
     self.classificationLabel.text = model.classification;

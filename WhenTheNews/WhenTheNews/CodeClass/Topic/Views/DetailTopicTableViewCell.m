@@ -37,7 +37,9 @@
 
 
 - (void)setDataWithModel:(TopicDetailModel *)model {
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.headpicurl]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.headpicurl]];
+    });
     self.nameAndTitleLabel.text = [NSString stringWithFormat:@"%@ | %@", model.name, model.title];
     self.descriptionLabel.text = model.Description;
 }

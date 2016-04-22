@@ -20,7 +20,8 @@
 @property (nonatomic,strong) UILabel *answerContentLabel;
 @property (nonatomic,strong) UIView *answerView;
 
+
 - (void)setDataWithModel:(TopicQuestionModel *)model;
-//- (CGFloat)stringHeight:(NSString *)string;
+- (void)setDataWithAnswerModel:(TopicAnswerModel *)model;
 
 @end

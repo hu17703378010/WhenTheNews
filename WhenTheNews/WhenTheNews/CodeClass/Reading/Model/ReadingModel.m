@@ -10,4 +10,14 @@
 
 @implementation ReadingModel
 
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key{
+    
+    if([key isEqualToString:@"id"]){
+        self.Id = value;
+    }
+    if([key isEqualToString:@"template"]){
+        self.templaTe = value;
+    }
+}
+
 @end

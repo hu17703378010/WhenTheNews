@@ -22,7 +22,7 @@ static AppDelegate *_appDelegate;
     // Override point for customization after application launch.
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor grayColor];
     [self.window makeKeyAndVisible];
     AllCodeClassViewController *allCor = [[AllCodeClassViewController alloc]init];
     self.window.rootViewController = allCor;
@@ -30,6 +30,7 @@ static AppDelegate *_appDelegate;
     _redView = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _redView.backgroundColor = [UIColor blackColor];
     _redView.alpha = 0.0;
+    [self.window addSubview:_redView];
 
     /*
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
