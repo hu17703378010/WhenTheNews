@@ -16,23 +16,12 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qem-ma-fPa">
-                        <rect key="frame" x="13" y="172" width="397" height="16"/>
+                        <rect key="frame" x="13" y="197" width="397" height="16"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qw4-GU-LsD">
-                        <rect key="frame" x="388" y="193" width="22" height="20"/>
-                        <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                        <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DDJ-Op-XJe">
-                        <rect key="frame" x="13" y="34" width="397" height="133"/>
-                        <animations/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ND4-zC-0UY">
                         <rect key="frame" x="13" y="13" width="397" height="16"/>
                         <animations/>
@@ -40,18 +29,19 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DDJ-Op-XJe">
+                        <rect key="frame" x="13" y="34" width="397" height="158"/>
+                        <animations/>
+                    </imageView>
                 </subviews>
                 <animations/>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="qw4-GU-LsD" secondAttribute="bottom" constant="5" id="8VT-mS-yTc"/>
                     <constraint firstItem="DDJ-Op-XJe" firstAttribute="top" secondItem="ND4-zC-0UY" secondAttribute="bottom" constant="5" id="Hky-2i-mQg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ND4-zC-0UY" secondAttribute="trailing" constant="5" id="N2e-Sw-FX2"/>
                     <constraint firstItem="ND4-zC-0UY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="Nia-ea-biM"/>
                     <constraint firstItem="qem-ma-fPa" firstAttribute="width" secondItem="DDJ-Op-XJe" secondAttribute="width" id="UVi-Dp-fCQ"/>
-                    <constraint firstItem="qw4-GU-LsD" firstAttribute="top" secondItem="qem-ma-fPa" secondAttribute="bottom" constant="5" id="UxX-gP-xKR"/>
-                    <constraint firstItem="qw4-GU-LsD" firstAttribute="trailing" secondItem="qem-ma-fPa" secondAttribute="trailing" id="W7U-oT-K9I"/>
                     <constraint firstItem="DDJ-Op-XJe" firstAttribute="width" secondItem="ND4-zC-0UY" secondAttribute="width" id="gUu-89-LBo"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="qem-ma-fPa" secondAttribute="bottom" constant="30" id="hJC-nM-gvf"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="qem-ma-fPa" secondAttribute="bottom" constant="5" id="hJC-nM-gvf"/>
                     <constraint firstItem="qem-ma-fPa" firstAttribute="top" secondItem="DDJ-Op-XJe" secondAttribute="bottom" constant="5" id="raJ-X8-hUF"/>
                     <constraint firstItem="DDJ-Op-XJe" firstAttribute="leading" secondItem="ND4-zC-0UY" secondAttribute="leading" id="rio-X2-DS7"/>
                     <constraint firstItem="ND4-zC-0UY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="vlU-1e-e2f"/>
@@ -62,7 +52,6 @@
             <connections>
                 <outlet property="contextLabel" destination="qem-ma-fPa" id="1tw-Oj-qFC"/>
                 <outlet property="imgView" destination="DDJ-Op-XJe" id="Hzi-qg-ktX"/>
-                <outlet property="timeLabel" destination="qw4-GU-LsD" id="3xW-ui-I7x"/>
                 <outlet property="titleLabel" destination="ND4-zC-0UY" id="iCX-hA-3Xp"/>
             </connections>
             <point key="canvasLocation" x="44.5" y="304.5"/>

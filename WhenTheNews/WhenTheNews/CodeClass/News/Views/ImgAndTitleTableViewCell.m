@@ -16,7 +16,7 @@
     
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:model.imgsrc] placeholderImage:[UIImage imageNamed:@""]];
     self.titleLabel.text = model.title;
-    self.timeLabel.text = [NSString stringWithFormat:@"%@回复",model.replyCount];
+    //self.timeLabel.text = [NSString stringWithFormat:@"%@回复",model.replyCount];
     self.contextLabel.text = model.digest;
     
     

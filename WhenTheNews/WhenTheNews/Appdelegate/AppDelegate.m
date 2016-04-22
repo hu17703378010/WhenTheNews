@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AllCodeClassViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface AppDelegate ()
 
@@ -30,8 +31,15 @@ static AppDelegate *_appDelegate;
     _redView.backgroundColor = [UIColor blackColor];
     _redView.alpha = 0.0;
 
-    
-    
+    /*
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    BOOL ok;
+    NSError *setCategoryError = nil;
+    ok = [audioSession setCategory:AVAudioSessionCategoryPlayback                              error:&setCategoryError];
+    if (!ok) {
+        NSLog(@"%s setCategoryError=%@", __PRETTY_FUNCTION__, setCategoryError);
+    }
+    */
     return YES;
 }
 

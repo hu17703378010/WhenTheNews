@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *secondImg;
 
 @property (weak, nonatomic) IBOutlet UIImageView *thirstImg;
+
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 - (void)setModelContentToCell:(NewsModel *)model;
