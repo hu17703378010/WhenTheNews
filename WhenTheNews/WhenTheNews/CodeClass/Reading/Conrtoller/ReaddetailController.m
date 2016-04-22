@@ -33,47 +33,29 @@
 
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -64) forBarMetrics:UIBarMetricsDefault];
     
-       [self loadTextViewData];
+    self.webView = [[UIWebView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+
+    self.webView.delegate = self;
+    self.webView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.webView];
+    [self loadTextViewData];
+
 }
 
 
 - (void)loadTextViewData{
     //设置webView
-    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0,0,ScreenWidth, ScreenHeight - 44)];
-    self.webView.delegate = self;
-    _webView.dataDetectorTypes = UIDataDetectorTypeAll;
-    self.webView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.webView];
- //   __weak wSelf = self;
-    NSString *string = [NSString stringWithFormat:@"http://c.m.163.com/nc/article/%@/full.html",self.URLStr];
-    
-            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"application/x-json",@"text/html", nil];
-            [manager GET:string parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-    
-                NSDictionary *dataDic = [NSDictionary dictionaryWithDictionary:responseObject];
-           NSDictionary *dic = [dataDic objectForKey:self.URLStr];
-                ModelForDetail *model = [[ModelForDetail alloc]init];
-                [model setValuesForKeysWithDictionary:dic];
-                
-    
-                _contentString = [[[model.title stringByAppendingString:model.ptime]stringByAppendingString:model.body]stringByAppendingString:model.source];
-                
-               _webView.scalesPageToFit = NO;
-          //      把原来的html通过importStyleWithHtmlString进行替换，修改html的布局
-             NSString *newString = [NSString importStyleWithHtmlString:_contentString];
-                //baseURL可以让界面加载的时候按照本地样式去加载
-                NSURL *baseURL = [NSURL fileURLWithPath:[NSBundle
-                                                         mainBundle].bundlePath];
-                [_webView loadHTMLString:newString baseURL:baseURL];
-
-   
-    
-    
-    
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                
-            }];
+        NSString *string = [NSString stringWithFormat:@"http://c.m.163.com/nc/article/%@/full.html",self.URLStr];
+    __block typeof(self)wSelf = self;
+    [[[NSURLSession sharedSession]dataTaskWithURL:[NSURL URLWithString:string] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSDictionary *dataDic = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingAllowFragments) error:nil];
+        
+        NSDictionary *dic = [dataDic valueForKey:self.URLStr];
+        
+        ModelForDetail *model = [[ModelForDetail alloc]init];
+        [model setValuesForKeysWithDictionary:dic];  // KVC
+        [wSelf.webView loadHTMLString:[wSelf.webView setUpData:model] baseURL:nil];
+    }]resume];
 
    }
 
