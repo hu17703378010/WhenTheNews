@@ -11,7 +11,7 @@
 
 /****************************** 新闻 ******************************/
 
-#define NEWS_URL @"http://c.3g.163.com/nc/article/list/%@/%d-20.html"
+#define NEWS_URL @"http://c.3g.163.com/nc/article/list/%@/%ld-20.html"
 
 //娱乐
 #define ENTERTAINMENT_URL @"T1348648517839"
