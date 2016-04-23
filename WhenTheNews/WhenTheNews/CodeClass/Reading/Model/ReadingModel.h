@@ -19,10 +19,6 @@
 @property (nonatomic,copy)NSString *img;//左边大图
 @property(nonatomic,copy) NSString *templaTe;//
 
-//@property (nonatomic,copy) NSString *topimagsrc;
-//
-//
-//@property (nonatomic,copy)NSString *buttomimagsrc;
 
 @property (nonatomic,strong) NSArray *imgnewextra;
 
