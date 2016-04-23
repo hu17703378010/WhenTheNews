@@ -31,6 +31,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -64) forBarMetrics:UIBarMetricsDefault];
 
+    self.navigationItem.title = self.titleString;
+    
     NSString *documents = [self documentsForFilePath];
     NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
     if (dataArr.count>0) {
