@@ -24,7 +24,7 @@
         //获取documents 路径
         NSString *string = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
         //创建数据库路径
-        NSString *path = [string stringByAppendingPathComponent:@""];
+        NSString *path = [string stringByAppendingPathComponent:@"news.sqlite"];
         self.database = [[FMDatabase alloc]initWithPath:path];
         BOOL isOpen = [self.database open];
         if (!isOpen) {
