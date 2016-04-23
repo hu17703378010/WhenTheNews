@@ -21,7 +21,7 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-        //获取documents 路径
+        //获取documents路径
         NSString *string = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
         //创建数据库路径
         NSString *path = [string stringByAppendingPathComponent:@""];

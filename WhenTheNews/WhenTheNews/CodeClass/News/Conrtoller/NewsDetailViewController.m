@@ -30,15 +30,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.webView = [[UIWebView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    self.webView.delegate = self;
+    self.view.backgroundColor = [UIColor lightGrayColor];
+    
+    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    //self.webView.delegate = self;
+    self.webView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.webView];
     [self htmlContentTowebView];
+    self.navigationController.navigationBar.translucent = NO;
+    
     
     //[self setContentToWebView];
-    
     self.title = self.titleName;
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]}];
+    //[self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]}];
     //设置网页链接可用
     //self.webView.dataDetectorTypes = UIDataDetectorTypeAll;
     //设置音频播放是否支持
@@ -53,7 +57,7 @@
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"collection_False"] style:UIBarButtonItemStyleDone target:self action:@selector(collectionAciton:)];
     self.navigationItem.rightBarButtonItem = item;
-    
+    self.tabBarController.tabBar.hidden = YES;
     self.barButtonItem = item;
 }
 
