@@ -11,8 +11,9 @@
 @interface NewsDetailViewController : UIViewController
 
 @property(nonatomic,strong)NSString *url_3w;
+
+
 @property(nonatomic,strong)NSString *docid;
-
 @property(nonatomic,strong)NSString *titleName;
-
+@property (nonatomic,assign) BOOL isCollect;
 @end

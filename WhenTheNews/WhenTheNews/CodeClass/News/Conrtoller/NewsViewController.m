@@ -71,6 +71,7 @@
     });
     
     
+    
     //self.tabble = [self.newsScrollView viewWithTag:];
     
     //self.headerScrollView.backgroundColor = [UIColor redColor];
@@ -375,6 +376,8 @@
     }
    
 }
+
+
 
 
 - (void)didReceiveMemoryWarning {
