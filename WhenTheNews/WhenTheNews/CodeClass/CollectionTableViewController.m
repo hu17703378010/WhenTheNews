@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -64) forBarMetrics:UIBarMetricsDefault];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     if (self.dataArray.count == 0) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"你还没有收藏资讯，赶快去收藏您喜欢的资讯吧！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];

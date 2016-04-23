@@ -28,18 +28,47 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.view.backgroundColor = [UIColor whiteColor];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -64) forBarMetrics:UIBarMetricsDefault];
 
+    NSString *documents = [self documentsForFilePath];
+    NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
+    if (dataArr.count>0) {
+        
+        for (NSDictionary *dic in dataArr) {
+            NSString *str = [dic valueForKey:@"title"];
+            if ([self.titleString isEqualToString:str]) {
+              
+                self.isCollect = YES;
+                _barButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"collection_True"] style:UIBarButtonItemStyleDone target:self action:@selector(collectionAciton)];
+                
+                self.navigationItem.rightBarButtonItem = _barButton;
+                
+                
+            }else{
+                //        [_barButton setImage:[UIImage imageNamed:@"collection_False"]];
+                _barButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"collection_False"] style:UIBarButtonItemStyleDone target:self action:@selector(collectionAciton)];
+                
+                self.navigationItem.rightBarButtonItem = _barButton;
+                self.isCollect = NO;
+            }
+        }
+        
+    }else{
+        _barButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"collection_False"] style:UIBarButtonItemStyleDone target:self action:@selector(collectionAciton)];
+        
+        self.navigationItem.rightBarButtonItem = _barButton;
+        self.isCollect = NO;
+        
+    }
     
+    
+    
+
     
     [self loadTextViewData];
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"collection_False"] style:UIBarButtonItemStyleDone target:self action:@selector(collectionAciton:)];
-    self.navigationItem.rightBarButtonItem = item;
-    
-    self.barButton = item;
-
+  
 }
 
 - (NSString *)documentsForFilePath
@@ -49,51 +78,46 @@
     NSLog(@"%@",documents);
     return documents;
 }
-#pragma mark --  判断是否已收藏
-- (BOOL)isCollect
-{
-    NSString *documents = [self documentsForFilePath];
-    NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
-    for (NSDictionary *dic in dataArr) {
-        NSString *str = [dic valueForKey:@"title"];
-        if ([self.titleString isEqualToString:str]) {
-   //    [self.barButton setImage:[UIImage imageNamed:@"collection_False"] ];
-
-        return YES;
-        }
-    }
-  //  [self.barButton setImage:[UIImage imageNamed:@"collection_True"] ];
-    return NO;
-
-}
 
 
 #pragma mark ---- collectionAciton
--(void)collectionAciton:(UIBarButtonItem *)item{
-    NSLog(@"收藏了新闻");
-    if ([self isCollect]) {
-        self.alertView = [[UIAlertView alloc] initWithTitle:nil message:@"该资讯已收藏" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+-(void)collectionAciton{
+    if (self.isCollect== YES) {
+        self.alertView = [[UIAlertView alloc] initWithTitle:nil message:@"已取消收藏" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
         _alertView.tag = 700;
         [_alertView show];
         NSTimer *timer;
         timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(dismissAlertViewCancel) userInfo:nil repeats:NO];
         
+        [_barButton setImage:[UIImage imageNamed:@"collection_False"]];
+        self.isCollect = NO;
+        NSString *documents = [self documentsForFilePath];
+        NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
+        NSDictionary *dic = @{@"url":self.URLStr,@"title":self.titleString};
+        [dataArr removeObject:dic];
+        [dataArr writeToFile:documents atomically:YES];
+        
+        
     } else {
         
-        [item setImage:[UIImage imageNamed:@"iconfont_True.png"]];
+        self.alertView = [[UIAlertView alloc] initWithTitle:nil message:@"收藏成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        _alertView.tag = 700;
+        [_alertView show];
+        NSTimer *timer;
+        timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(dismissAlertViewCancel) userInfo:nil repeats:NO];
+        self.isCollect = YES;
+        [_barButton setImage:[UIImage imageNamed:@"collection_True"]];
+        
         
         NSString *documents = [self documentsForFilePath];
         NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
-        
-        if (!dataArr) {
-            dataArr = [[NSMutableArray alloc] init];
-        }
-        
         NSDictionary *dic = @{@"url":self.URLStr,@"title":self.titleString};
-        
         [dataArr addObject:dic];
         [dataArr writeToFile:documents atomically:YES];
     }
+    
+    
+
 
     
     

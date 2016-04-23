@@ -54,7 +54,7 @@
     
     self.page = 0;
     self.currPage = 0;
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"视频";
     self.automaticallyAdjustsScrollViewInsets = NO;
     _dataArray = [NSArray arrayWithObjects:@"推荐",@"搞笑",@"美女",@"新闻现场",@"萌物",@"体育",@"黑科技",@"八卦", nil];
