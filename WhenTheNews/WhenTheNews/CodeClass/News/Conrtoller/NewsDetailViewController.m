@@ -34,12 +34,14 @@
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     
-    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight)];
     //self.webView.delegate = self;
-    self.webView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.webView];
-    [self htmlContentTowebView];
-    self.navigationController.navigationBar.translucent = NO;
+    self.webView.backgroundColor = [UIColor blackColor];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self htmlContentTowebView];
+        [self.view addSubview:self.webView];
+    });
     
     //[self setContentToWebView];
     self.title = self.titleName;
