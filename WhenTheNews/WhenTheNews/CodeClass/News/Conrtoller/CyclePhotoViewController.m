@@ -33,19 +33,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = YES;
-    NSString *documents = [self documentsForFilePath];
-    NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
-    if (dataArr.count > 0) {
-        for (NSDictionary *dic in dataArr) {
-            if ([self.title_name isEqualToString:dic[@"title"]]) {
-                if ([dic[@"collction"] isEqualToString:@"1"]) {
-                    self.isCollect = YES;
-                }else{
-                    self.isCollect = NO;
-                }
-            }
-        }
-    }
 }
 -(NSMutableArray *)imageArray{
     if (!_imageArray) {
@@ -84,6 +71,7 @@
                 self.isCollect = YES;
                 _barButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"collection_True"] style:UIBarButtonItemStyleDone target:self action:@selector(collectionAciton)];
                 self.navigationItem.rightBarButtonItem = _barButtonItem;
+                break;
             }else{
                 _barButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"collection_False"] style:UIBarButtonItemStyleDone target:self action:@selector(collectionAciton)];
                 
@@ -112,10 +100,11 @@
         self.isCollect = NO;
         NSString *documents = [self documentsForFilePath];
         NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
-        //NSDictionary *dic = @{@"url":self.docid,@"title":self.titleName,@"collection":[NSString stringWithFormat:@"%d",self.isCollect]};
+//        NSDictionary *dic = @{@"url":self.photo_skipID,@"title":self.title_name};
         for (NSDictionary *dic in dataArr) {
             if ([dic[@"title"] isEqualToString:self.title]) {
                 [dataArr removeObject:dic];
+                break;
             }
         }
         [dataArr writeToFile:documents atomically:YES];
@@ -134,12 +123,12 @@
         NSString *documents = [self documentsForFilePath];
         NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
         if (dataArr!=nil) {
-            NSDictionary *dic = @{@"skipID":self.photo_skipID,@"title":self.title_name,@"collection":[NSString stringWithFormat:@"%d",self.isCollect]};
+            NSDictionary *dic = @{@"skipID":self.photo_skipID,@"title":self.title_name};
             [dataArr addObject:dic];
             [dataArr writeToFile:documents atomically:YES];
         }else{
             dataArr = [NSMutableArray array];
-            NSDictionary *dic = @{@"skipID":self.photo_skipID,@"title":self.title_name,@"collection":[NSString stringWithFormat:@"%d",self.isCollect]};
+            NSDictionary *dic = @{@"skipID":self.photo_skipID,@"title":self.title_name};
             [dataArr addObject:dic];
             [dataArr writeToFile:documents atomically:YES];
         }

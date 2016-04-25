@@ -31,20 +31,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = YES;
-    NSString *documents = [self documentsForFilePath];
-    NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
-    if (dataArr.count > 0) {
-        for (NSDictionary *dic in dataArr) {
-            if ([self.titleName isEqualToString:dic[@"title"]]) {
-                if ([dic[@"collction"] isEqualToString:@"1"]) {
-                    self.isCollect = YES;
-                }else{
-                    self.isCollect = NO;
-                }
-            }
-        }
-    }
-    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -90,6 +76,7 @@
                 self.isCollect = YES;
                 _barButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"collection_True"] style:UIBarButtonItemStyleDone target:self action:@selector(collectionAciton)];
                 self.navigationItem.rightBarButtonItem = _barButtonItem;
+                break;
             }else{
                 _barButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"collection_False"] style:UIBarButtonItemStyleDone target:self action:@selector(collectionAciton)];
                 
@@ -123,6 +110,7 @@
         for (NSDictionary *dic in dataArr) {
             if ([dic[@"title"] isEqualToString:self.title]) {
                 [dataArr removeObject:dic];
+                break;
             }
         }
         [dataArr writeToFile:documents atomically:YES];
@@ -141,12 +129,12 @@
         NSString *documents = [self documentsForFilePath];
         NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
         if (dataArr!=nil) {
-            NSDictionary *dic = @{@"docid":self.docid,@"title":self.titleName,@"collection":[NSString stringWithFormat:@"%d",self.isCollect]};
+            NSDictionary *dic = @{@"docid":self.docid,@"title":self.titleName};
             [dataArr addObject:dic];
             [dataArr writeToFile:documents atomically:YES];
         }else{
             dataArr = [NSMutableArray array];
-            NSDictionary *dic = @{@"docid":self.docid,@"title":self.titleName,@"collection":[NSString stringWithFormat:@"%d",self.isCollect]};
+            NSDictionary *dic = @{@"docid":self.docid,@"title":self.titleName};
             [dataArr addObject:dic];
             [dataArr writeToFile:documents atomically:YES];
         }
