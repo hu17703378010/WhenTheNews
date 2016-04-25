@@ -29,6 +29,12 @@
 
 @implementation NewsDetailViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = YES;
+    NSString *documents = [self documentsForFilePath];
+    NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -61,8 +67,6 @@
 //    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"collection_False"] style:UIBarButtonItemStyleDone target:self action:@selector(collectionAciton:)];
 //    self.barButtonItem = item;
 //    self.navigationItem.rightBarButtonItem = item;
-    self.tabBarController.tabBar.hidden = YES;
-    
     
     
     
@@ -104,10 +108,13 @@
         self.isCollect = NO;
         NSString *documents = [self documentsForFilePath];
         NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
-        NSDictionary *dic = @{@"url":self.docid,@"title":self.titleName};
-        [dataArr removeObject:dic];
+        //NSDictionary *dic = @{@"url":self.docid,@"title":self.titleName,@"collection":[NSString stringWithFormat:@"%d",self.isCollect]};
+        for (NSDictionary *dic in dataArr) {
+            if ([dic[@"title"] isEqualToString:self.title]) {
+                [dataArr removeObject:dic];
+            }
+        }
         [dataArr writeToFile:documents atomically:YES];
-        
         
     } else {
         
@@ -122,9 +129,17 @@
         
         NSString *documents = [self documentsForFilePath];
         NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
-        NSDictionary *dic = @{@"url":self.docid,@"title":self.titleName};
-        [dataArr addObject:dic];
-        [dataArr writeToFile:documents atomically:YES];
+        if (dataArr!=nil) {
+            NSDictionary *dic = @{@"docid":self.docid,@"title":self.titleName};
+            [dataArr addObject:dic];
+            [dataArr writeToFile:documents atomically:YES];
+        }else{
+            dataArr = [NSMutableArray array];
+            NSDictionary *dic = @{@"docid":self.docid,@"title":self.titleName};
+            [dataArr addObject:dic];
+            [dataArr writeToFile:documents atomically:YES];
+        }
+        
     }
 
 }

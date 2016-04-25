@@ -31,7 +31,9 @@
 @implementation CyclePhotoViewController
 
 
-
+-(void)viewWillAppear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = YES;
+}
 -(NSMutableArray *)imageArray{
     if (!_imageArray) {
         _imageArray = [NSMutableArray array];
@@ -50,8 +52,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
     self.title = self.title_name;
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]}];
-    self.tabBarController.tabBar.hidden = YES;
+//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]}];
     
     [self setClooectionItem];
     [self requestData];
@@ -98,10 +99,13 @@
         self.isCollect = NO;
         NSString *documents = [self documentsForFilePath];
         NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
-        NSDictionary *dic = @{@"url":self.photo_skipID,@"title":self.title_name};
-        [dataArr removeObject:dic];
+        //NSDictionary *dic = @{@"url":self.docid,@"title":self.titleName,@"collection":[NSString stringWithFormat:@"%d",self.isCollect]};
+        for (NSDictionary *dic in dataArr) {
+            if ([dic[@"title"] isEqualToString:self.title]) {
+                [dataArr removeObject:dic];
+            }
+        }
         [dataArr writeToFile:documents atomically:YES];
-        
         
     } else {
         
@@ -116,11 +120,18 @@
         
         NSString *documents = [self documentsForFilePath];
         NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
-        NSDictionary *dic = @{@"url":self.photo_skipID,@"title":self.title_name};
-        [dataArr addObject:dic];
-        [dataArr writeToFile:documents atomically:YES];
+        if (dataArr!=nil) {
+            NSDictionary *dic = @{@"skipID":self.photo_skipID,@"title":self.title_name};
+            [dataArr addObject:dic];
+            [dataArr writeToFile:documents atomically:YES];
+        }else{
+            dataArr = [NSMutableArray array];
+            NSDictionary *dic = @{@"skipID":self.photo_skipID,@"title":self.title_name};
+            [dataArr addObject:dic];
+            [dataArr writeToFile:documents atomically:YES];
+        }
+        
     }
-    
 }
 #pragma mark --  UIAlertView 自动消失
 - (void)dismissAlertViewCancel

@@ -9,6 +9,8 @@
 #import "CollectionTableViewController.h"
 #import "ReaddetailController.h"
 
+#import "NewsDetailViewController.h"
+#import "CyclePhotoViewController.h"
 @interface CollectionTableViewController ()<UIAlertViewDelegate>
 
 @property (nonatomic,strong)NSMutableArray *dataArray;
@@ -37,6 +39,12 @@
     return documents;
 }
 
+<<<<<<< HEAD
+=======
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
+>>>>>>> 7fcc17f0e5bacb85e68093b340d9a7ff35afe9e4
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -117,11 +125,34 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ReaddetailController *detail = [[ReaddetailController alloc] init];
-    detail.URLStr = [self.dataArray[indexPath.row] valueForKey:@"url"];
-    detail.titleString = [self.dataArray[indexPath.row] valueForKey:@"title"];
-    detail.view.backgroundColor = [UIColor whiteColor];
-    [self.navigationController pushViewController:detail animated:YES];
+//    ReaddetailController *detail = [[ReaddetailController alloc] init];
+//    detail.URLStr = [self.dataArray[indexPath.row] valueForKey:@"url"];
+//    detail.titleString = [self.dataArray[indexPath.row] valueForKey:@"title"];
+//    detail.view.backgroundColor = [UIColor whiteColor];
+//    [self.navigationController pushViewController:detail animated:YES];
+    
+    NSString *title = [self.dataArray[indexPath.row] valueForKey:@"title"];
+    NSDictionary *dic = self.dataArray[indexPath.row];
+    for (NSString *key in dic.allKeys) {
+        if ([key isEqualToString:@"url"]) {
+            ReaddetailController *detail = [[ReaddetailController alloc] init];
+            detail.URLStr = [self.dataArray[indexPath.row] valueForKey:@"url"];
+            detail.titleString = title;
+            [self.navigationController pushViewController:detail animated:YES];
+        }
+        if ([key isEqualToString:@"docid"]) {
+            NewsDetailViewController *newsDetail = [[NewsDetailViewController alloc]init];
+            newsDetail.titleName = title;
+            newsDetail.docid = [self.dataArray[indexPath.row] valueForKey:key];
+            [self.navigationController pushViewController:newsDetail animated:YES];
+        }
+        if ([key isEqualToString:@"skipID"]) {
+            CyclePhotoViewController *cyclePhoto = [[CyclePhotoViewController alloc]init];
+            cyclePhoto.title_name = title;
+            cyclePhoto.photo_skipID = [self.dataArray[indexPath.row] valueForKey:key];
+            [self.navigationController pushViewController:cyclePhoto animated:YES];
+        }
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -137,9 +168,5 @@
         
     }
 }
-
-
-
-
 
 @end
