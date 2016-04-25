@@ -39,12 +39,9 @@
     return documents;
 }
 
-<<<<<<< HEAD
-=======
 -(void)viewWillAppear:(BOOL)animated{
     [self.tableView reloadData];
 }
->>>>>>> 7fcc17f0e5bacb85e68093b340d9a7ff35afe9e4
 
 - (void)viewDidLoad {
     [super viewDidLoad];
