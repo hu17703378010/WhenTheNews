@@ -33,6 +33,17 @@
     self.tabBarController.tabBar.hidden = YES;
     NSString *documents = [self documentsForFilePath];
     NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
+    if (dataArr.count > 0) {
+        for (NSDictionary *dic in dataArr) {
+            if ([self.titleName isEqualToString:dic[@"title"]]) {
+                if ([dic[@"collction"] isEqualToString:@"1"]) {
+                    self.isCollect = YES;
+                }else{
+                    self.isCollect = NO;
+                }
+            }
+        }
+    }
     
 }
 - (void)viewDidLoad {
@@ -130,12 +141,12 @@
         NSString *documents = [self documentsForFilePath];
         NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
         if (dataArr!=nil) {
-            NSDictionary *dic = @{@"docid":self.docid,@"title":self.titleName};
+            NSDictionary *dic = @{@"docid":self.docid,@"title":self.titleName,@"collection":[NSString stringWithFormat:@"%d",self.isCollect]};
             [dataArr addObject:dic];
             [dataArr writeToFile:documents atomically:YES];
         }else{
             dataArr = [NSMutableArray array];
-            NSDictionary *dic = @{@"docid":self.docid,@"title":self.titleName};
+            NSDictionary *dic = @{@"docid":self.docid,@"title":self.titleName,@"collection":[NSString stringWithFormat:@"%d",self.isCollect]};
             [dataArr addObject:dic];
             [dataArr writeToFile:documents atomically:YES];
         }

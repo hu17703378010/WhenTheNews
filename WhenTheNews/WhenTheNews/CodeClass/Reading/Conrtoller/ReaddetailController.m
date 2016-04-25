@@ -117,12 +117,6 @@
         [dataArr addObject:dic];
         [dataArr writeToFile:documents atomically:YES];
     }
-    
-    
-
-
-    
-    
 }
 
 #pragma mark --  UIAlertView 自动消失
