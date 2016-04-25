@@ -31,16 +31,26 @@ static AppDelegate *_appDelegate;
     _redView.backgroundColor = [UIColor blackColor];
     _redView.alpha = 0.0;
     [self.window addSubview:_redView];
-
-    /*
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    BOOL ok;
-    NSError *setCategoryError = nil;
-    ok = [audioSession setCategory:AVAudioSessionCategoryPlayback                              error:&setCategoryError];
-    if (!ok) {
-        NSLog(@"%s setCategoryError=%@", __PRETTY_FUNCTION__, setCategoryError);
+    
+    if (![[NSUserDefaults standardUserDefaults]boolForKey:@"firstStart"]) {
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"firstStart"];
+        
+        NSLog(@"第一次启动");
+        NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        //获取完整路径
+        NSString *documentsPath = [path objectAtIndex:0];
+        NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"collectNews.plist"];
+        
+        NSMutableArray *dataArr = [[NSMutableArray alloc]init];
+        //写入文件
+        [dataArr writeToFile:plistPath atomically:YES];
+        
+    }else{
+        NSLog(@"不是第一次启动");
     }
-    */
+
+    
+
     return YES;
 }
 

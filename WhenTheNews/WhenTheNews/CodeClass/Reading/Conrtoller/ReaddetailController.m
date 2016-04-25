@@ -46,9 +46,9 @@
                 
                 self.navigationItem.rightBarButtonItem = _barButton;
                 
-                
+                break;
             }else{
-                //        [_barButton setImage:[UIImage imageNamed:@"collection_False"]];
+               
                 _barButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"collection_False"] style:UIBarButtonItemStyleDone target:self action:@selector(collectionAciton)];
                 
                 self.navigationItem.rightBarButtonItem = _barButton;
