@@ -49,7 +49,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"设置";
     
-    self.NameArray = @[@"收藏",@"清除缓存",@"护眼模式",@"免责声明",@"版本号"];
+    self.NameArray = @[@"收藏",@"清除缓存",@"免责声明",@"版本号"];
    
     [self loadHeaderView];
 }
@@ -72,7 +72,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return 4;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *ident = @"cell";
@@ -82,7 +82,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:ident];
     }
-        if (indexPath.row == 4) {
+        if (indexPath.row == 3) {
             UILabel *version = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 70, self.tableView.rowHeight / 2 - 13 , 60, 25)];
             version.text = @"V1.01";
             version.textAlignment = NSTextAlignmentCenter;
@@ -95,11 +95,9 @@
         
             [cell addSubview:self.cache];
             
-       }else if (indexPath.row == 2) {
-            UISwitch *swith = [[UISwitch alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 70, self.tableView.rowHeight / 2 - 13 , 60, 25)];
-            [swith addTarget:self action:@selector(nightStyle:) forControlEvents:(UIControlEventValueChanged)];
-            [cell addSubview:swith];
-        } else {
+       }
+
+            else {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -123,7 +121,7 @@
         [self setupDisclaimerView];
      
         
-    }else if (indexPath.row == 3){
+    }else if (indexPath.row == 2){
         [self setupAlertView];
     }
     
