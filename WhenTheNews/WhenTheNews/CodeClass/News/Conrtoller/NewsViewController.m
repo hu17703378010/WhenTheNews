@@ -15,6 +15,7 @@
 #import "MoreImgTableViewCell.h"
 #import "NewsView.h"
 #import <AFHTTPSessionManager.h>
+#import <UIImageView+WebCache.h>
 
 #import "NewsDetailViewController.h"
 #import "CyclePhotoViewController.h"
@@ -46,9 +47,10 @@
 @implementation NewsViewController
 
 
--(void)viewDidAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = NO;
 }
+
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -246,7 +248,7 @@
     if (self.listArray.count > 0) {
         model = self.listArray[indexPath.row];
     }
-    if (model.photosetID!=nil) {
+    if (model.imgextra!=nil) {
         MoreImgTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MoreImgTableViewCell"];
         [cell setModelContentToCell:model];
         //cell.backgroundColor = [UIColor clearColor];
@@ -300,7 +302,7 @@
         [self.navigationController pushViewController:newsDVC animated:YES];
     }
     
-    if (model.photosetID) {
+    if (model.skipID) {
         cyclePhotoVC.photo_skipID = model.skipID;
         [self.navigationController pushViewController:cyclePhotoVC animated:YES];
     }
