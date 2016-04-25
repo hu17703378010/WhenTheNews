@@ -46,6 +46,9 @@
 @implementation NewsViewController
 
 
+-(void)viewDidAppear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = NO;
+}
 
 - (void)viewDidLoad{
     [super viewDidLoad];
