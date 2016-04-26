@@ -54,6 +54,9 @@
     self.navigationItem.title = @"问吧";
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 65) style:UITableViewStylePlain];
     [self.view addSubview:self.tableView];
+    self.tableView.showsHorizontalScrollIndicator = NO;
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.bounces = NO;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -117,6 +120,8 @@
     TopicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL forIndexPath:indexPath];
     TopicModel *model = self.dataArray[indexPath.row];
     [cell setDataWithModel:model];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     return cell;
 }
 

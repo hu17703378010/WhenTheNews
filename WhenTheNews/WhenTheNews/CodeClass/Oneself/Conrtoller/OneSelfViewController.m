@@ -192,18 +192,7 @@
         _cache.text = _model.cache;
     }
 }
-// 护眼模式
-- (void)nightStyle:(UISwitch *)sender
-{
-    NSLog(@"%@",sender.on?@"YES":@"NO");
-    
-    
-    if (sender.on) {
-        [AppDelegate  shareAppDelegate].redView.alpha = 0.5;
-    }else{
-        [AppDelegate shareAppDelegate].redView.alpha = 0.0;
-    }
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

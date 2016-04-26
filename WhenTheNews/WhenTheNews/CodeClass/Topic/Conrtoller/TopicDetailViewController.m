@@ -141,6 +141,8 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.bounces = NO;
     [self.tableView registerClass:[DetailTopicTableViewCell class] forCellReuseIdentifier:FIRST];
     [self.tableView registerClass:[DetailAAndQTableViewCell class] forCellReuseIdentifier:SECOND];
     

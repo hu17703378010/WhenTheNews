@@ -241,6 +241,8 @@
     if ([self.arrayArr[_currPage] count]>0) {
         cell.model = self.arrayArr[_currPage][indexPath.row];
         cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         return cell;
     }
     
@@ -307,4 +309,6 @@
     }];
     
 }
+
+
 @end
