@@ -120,13 +120,12 @@
     TopicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL forIndexPath:indexPath];
     TopicModel *model = self.dataArray[indexPath.row];
     [cell setDataWithModel:model];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     TopicModel *model = self.dataArray[indexPath.row];
     TopicDetailViewController *topicVC = [[TopicDetailViewController alloc] init];
     topicVC.expertId = model.expertId;

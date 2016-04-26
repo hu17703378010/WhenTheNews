@@ -241,6 +241,8 @@
     if ([self.arrayArr[_currPage] count]>0) {
         cell.model = self.arrayArr[_currPage][indexPath.row];
         cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         return cell;
     }
     
@@ -307,9 +309,6 @@
     }];
     
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    VideoViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-}
+
 
 @end

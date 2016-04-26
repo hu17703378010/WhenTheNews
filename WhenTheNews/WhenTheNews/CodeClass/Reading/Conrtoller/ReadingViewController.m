@@ -118,20 +118,24 @@
     if (boardid.count < 1) {
         readFristCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
         cell.model = model;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         return cell;
     }else{
         ReadScendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
         cell.model = model;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         return cell;
     }
+
     return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    // [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  
     
     ReadingModel *model = self.dataArray[indexPath.row];
     
