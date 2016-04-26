@@ -14,9 +14,9 @@
 
 - (void)setModelContentToCell:(NewsModel *)model{
     self.titleLabel.text = model.title;
-    [self.firstimg sd_setImageWithURL:[NSURL URLWithString:model.imgsrc] placeholderImage:[UIImage imageNamed:@"whenNewsBack1"]];
-    [self.secondImg sd_setImageWithURL:[NSURL URLWithString:model.imgextra[0][@"imgsrc"]] placeholderImage:[UIImage imageNamed:@"whenNewsBack1"]];
-    [self.thirstImg sd_setImageWithURL:[NSURL URLWithString:model.imgextra[1][@"imgsrc"]] placeholderImage:[UIImage imageNamed:@"whenNewsBack1"]];
+    [self.firstimg sd_setImageWithURL:[NSURL URLWithString:model.imgsrc] placeholderImage:[UIImage imageNamed:@"shixun"]];
+    [self.secondImg sd_setImageWithURL:[NSURL URLWithString:model.imgextra[0][@"imgsrc"]] placeholderImage:[UIImage imageNamed:@"shixun"]];
+    [self.thirstImg sd_setImageWithURL:[NSURL URLWithString:model.imgextra[1][@"imgsrc"]] placeholderImage:[UIImage imageNamed:@"shixun"]];
     self.timeLabel.text = [NSString stringWithFormat:@"%@回复",model.replyCount];
 
 }
