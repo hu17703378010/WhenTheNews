@@ -26,6 +26,7 @@ static AppDelegate *_appDelegate;
     [self.window makeKeyAndVisible];
     AllCodeClassViewController *allCor = [[AllCodeClassViewController alloc]init];
     self.window.rootViewController = allCor;
+    
     _appDelegate = self;
     _redView = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _redView.backgroundColor = [UIColor blackColor];
@@ -44,6 +45,8 @@ static AppDelegate *_appDelegate;
         NSMutableArray *dataArr = [[NSMutableArray alloc]init];
         //写入文件
         [dataArr writeToFile:plistPath atomically:YES];
+        
+        
         
     }else{
         NSLog(@"不是第一次启动");

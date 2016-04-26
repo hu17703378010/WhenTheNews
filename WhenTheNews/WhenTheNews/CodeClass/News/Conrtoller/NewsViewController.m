@@ -57,8 +57,8 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.listArray = [NSMutableArray array];
     self.title = @"新闻";
-    self.headerArray = @[@"独家",@"轻松一刻",@"娱乐",@"科技",@"财经",@"时尚",@"军事",@"历史",@"家具",@"体育"];
-    self.newsArray = @[EXCLUSIVE_URL,EASYMOMENT_URL,ENTERTAINMENT_URL,SCIENCE_URL,FINANCE_URL,FASHION_URL,MILITARY_URL,HISTORY_URL,FURNITURE_URL,SPORTS_URL];
+    self.headerArray = @[@"独家",@"娱乐",@"科技",@"财经",@"时尚",@"军事",@"历史",@"家具",@"体育"];
+    self.newsArray = @[EXCLUSIVE_URL,ENTERTAINMENT_URL,SCIENCE_URL,FINANCE_URL,FASHION_URL,MILITARY_URL,HISTORY_URL,FURNITURE_URL,SPORTS_URL];
     
     self.page = 0;
     self.isRefesh = YES;
@@ -252,15 +252,18 @@
         MoreImgTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MoreImgTableViewCell"];
         [cell setModelContentToCell:model];
         //cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone; 
         return cell;
     }else if (model.imgType !=nil){
         ImgAndTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ImgAndTitleTableViewCell"];
         [cell setModelContentToCell:model];
         //cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
         ImgAndContextTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ImgAndContextTableViewCell"];
         [cell setModelContentToCell:model];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         //cell.backgroundColor = [UIColor clearColor];
         return cell;
     }

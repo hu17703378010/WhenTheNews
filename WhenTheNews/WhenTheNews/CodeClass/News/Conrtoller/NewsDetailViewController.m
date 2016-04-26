@@ -25,6 +25,7 @@
 
 @property (nonatomic ,retain) UIAlertView *alertView;
 
+@property (nonatomic, strong)UIActivityIndicatorView *activity;
 @end
 
 @implementation NewsDetailViewController
@@ -40,10 +41,16 @@
     self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight)];
     //self.webView.delegate = self;
     self.webView.backgroundColor = [UIColor blackColor];
+    _activity = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleGray)];
+    _activity.frame = [UIScreen mainScreen].bounds;
     
+    [self.webView addSubview:_activity];
+    self.webView.delegate = self;
+    [_activity startAnimating];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self htmlContentTowebView];
         [self.view addSubview:self.webView];
+        
     });
     
     //[self setContentToWebView];
@@ -166,6 +173,7 @@
         ModelForDetail *model = [[ModelForDetail alloc]init];
         [model setValuesForKeysWithDictionary:dic];  // KVC
         [wSelf.webView loadHTMLString:[wSelf.webView setUpData:model] baseURL:nil];
+        
     }]resume];
 }
 
@@ -226,32 +234,40 @@
 }
 
 #pragma mark - webViewDelegate
--(void)webViewDidFinishLoad:(UIWebView *)webView{
-    //修改标签字体
-    NSString *tempString2 = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.fontSize='%@';",@"10px"];
-    [webView stringByEvaluatingJavaScriptFromString:tempString2];
-    
-    
-    // 修改图片大小
-    [webView stringByEvaluatingJavaScriptFromString:
-     @"var script = document.createElement('script');"
-     "script.type = 'text/javascript';"
-     "script.text = \"function ResizeImages() { "
-     "var myimg,oldwidth;"
-     "var maxwidth = 1100;" //缩放系数
-     "for(i=0;i < document.images.length;i++){"
-     "myimg = document.images[i];"
-     "if(myimg.width > maxwidth){"
-     "oldwidth = myimg.width;"
-     "myimg.width = maxwidth;"
-     "myimg.height = myimg.height * (maxwidth/oldwidth) + 90;"
-     "}"
-     "}"
-     "}\";"
-     "document.getElementsByTagName('head')[0].appendChild(script);"];
-    
-    [webView stringByEvaluatingJavaScriptFromString:@"ResizeImages();"];
+
+-(void)webViewDidStartLoad:(UIWebView *)webView{
+    [_activity stopAnimating];
 }
+//-(void)webViewDidFinishLoad:(UIWebView *)webView{
+//    [_activity stopAnimating];
+//    
+//    /*
+//    //修改标签字体
+//    NSString *tempString2 = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.fontSize='%@';",@"10px"];
+//    [webView stringByEvaluatingJavaScriptFromString:tempString2];
+//    
+//    
+//    // 修改图片大小
+//    [webView stringByEvaluatingJavaScriptFromString:
+//     @"var script = document.createElement('script');"
+//     "script.type = 'text/javascript';"
+//     "script.text = \"function ResizeImages() { "
+//     "var myimg,oldwidth;"
+//     "var maxwidth = 1100;" //缩放系数
+//     "for(i=0;i < document.images.length;i++){"
+//     "myimg = document.images[i];"
+//     "if(myimg.width > maxwidth){"
+//     "oldwidth = myimg.width;"
+//     "myimg.width = maxwidth;"
+//     "myimg.height = myimg.height * (maxwidth/oldwidth) + 90;"
+//     "}"
+//     "}"
+//     "}\";"
+//     "document.getElementsByTagName('head')[0].appendChild(script);"];
+//    
+//    [webView stringByEvaluatingJavaScriptFromString:@"ResizeImages();"];
+//     */
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
