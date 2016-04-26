@@ -63,11 +63,5 @@
  
 }
 
-//
-//-(CGSize)getStringCGSizeWithMaxSize:(CGSize)maxSize WithFont:(UIFont *)font WithString:(NSString *)string
-//{
-//    NSDictionary * attres=@{NSFontAttributeName:font};
-//    return [string boundingRectWithSize:CGSizeMake(ScreenWidth, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attres context:nil].size;
-//    
-//}
+
 @end
