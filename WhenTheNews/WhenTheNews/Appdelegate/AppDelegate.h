@@ -12,9 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (nonatomic, retain) UIImageView *redView;
 
-+ (AppDelegate *)shareAppDelegate;
 
 
 @end

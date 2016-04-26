@@ -136,13 +136,12 @@
    // [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
   
-    
     ReadingModel *model = self.dataArray[indexPath.row];
     
     ReaddetailController *detail = [[ReaddetailController alloc]init];
     detail.titleString = model.title;
     detail.URLStr = model.Id;
-    
+    [detail setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:detail animated:YES];
 }
 
