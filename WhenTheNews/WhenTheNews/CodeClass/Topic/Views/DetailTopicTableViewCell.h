@@ -15,6 +15,7 @@
 @property (nonatomic,strong) UILabel *nameAndTitleLabel;
 @property (nonatomic,strong) UILabel *descriptionLabel;
 @property (nonatomic,strong) UILabel *upLabel;
+//@property (nonatomic,strong) UIButton *strectButton;
 
 - (void)setDataWithModel:(TopicDetailModel *)model;
 
