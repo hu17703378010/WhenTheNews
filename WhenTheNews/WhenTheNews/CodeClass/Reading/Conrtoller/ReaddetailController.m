@@ -114,9 +114,18 @@
         
         NSString *documents = [self documentsForFilePath];
         NSMutableArray *dataArr = [NSMutableArray arrayWithContentsOfFile:documents];
-        NSDictionary *dic = @{@"url":self.URLStr,@"title":self.titleString};
-        [dataArr addObject:dic];
         [dataArr writeToFile:documents atomically:YES];
+        if (dataArr!=nil) {
+            NSDictionary *dic = @{@"url":self.URLStr,@"title":self.titleString};
+            [dataArr addObject:dic];
+            [dataArr writeToFile:documents atomically:YES];
+        }else{
+            dataArr = [NSMutableArray array];
+            NSDictionary *dic = @{@"url":self.URLStr,@"title":self.titleString};
+            [dataArr addObject:dic];
+            [dataArr writeToFile:documents atomically:YES];
+        }
+        
     }
 }
 

@@ -299,15 +299,14 @@
     CyclePhotoViewController *cyclePhotoVC = [[CyclePhotoViewController alloc]init];
     cyclePhotoVC.title_name = model.title;
     
-    //postid BL43V21N000153N3  http://3g.163.com/news/16/0420/17/BL43V21N000153N3.html
     if (model.url||model.imgType) {
         newsDVC.docid = model.docid;
         [self.navigationController pushViewController:newsDVC animated:YES];
-    }
-    
-    if (model.skipID) {
+        
+    }else{
         cyclePhotoVC.photo_skipID = model.skipID;
         [self.navigationController pushViewController:cyclePhotoVC animated:YES];
+
     }
 }
 
@@ -319,7 +318,6 @@
     CGPoint offset = self.newsScrollView.contentOffset;
     offset.x = index * self.newsScrollView.frame.size.width;
     
-    //[self.newsScrollView setContentOffset:offset animated:YES];
     self.newsScrollView.contentOffset = offset;
     
     for (int i = 0; i < self.headerArray.count; i++) {
@@ -384,9 +382,6 @@
     }
    
 }
-
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

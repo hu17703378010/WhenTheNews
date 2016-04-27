@@ -26,28 +26,6 @@ static AppDelegate *_appDelegate;
     [self.window makeKeyAndVisible];
     AllCodeClassViewController *allCor = [[AllCodeClassViewController alloc]init];
     self.window.rootViewController = allCor;
-
-    if (![[NSUserDefaults standardUserDefaults]boolForKey:@"firstStart"]) {
-        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"firstStart"];
-        
-        NSLog(@"第一次启动");
-        NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        //获取完整路径
-        NSString *documentsPath = [path objectAtIndex:0];
-        NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"collectNews.plist"];
-        
-        NSMutableArray *dataArr = [[NSMutableArray alloc]init];
-        //写入文件
-        [dataArr writeToFile:plistPath atomically:YES];
-        
-        
-        
-    }else{
-        NSLog(@"不是第一次启动");
-    }
-
-    
-
     return YES;
 }
 
