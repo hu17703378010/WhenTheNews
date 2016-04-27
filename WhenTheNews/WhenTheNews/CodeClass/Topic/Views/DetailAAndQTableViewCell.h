@@ -19,6 +19,7 @@
 @property (nonatomic,strong) UILabel *specialistNameLabel;
 @property (nonatomic,strong) UILabel *answerContentLabel;
 @property (nonatomic,strong) UIView *answerView;
+//@property (nonatomic,strong) UIButton *stretchButton;
 
 
 - (void)setDataWithModel:(TopicQuestionModel *)model;

@@ -29,6 +29,10 @@
     self.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(78, 31, 285, 22)];
     [self addSubview:self.descriptionLabel];
     
+//    self.strectButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//    self.strectButton.frame = CGRectMake(330, 0, 40, 20);
+//    [self addSubview:self.strectButton];
+    
 //    self.upLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 20, ScreenWidth, 20)];
 //    self.upLabel.backgroundColor = [UIColor grayColor];
 //    [self addSubview:self.upLabel];

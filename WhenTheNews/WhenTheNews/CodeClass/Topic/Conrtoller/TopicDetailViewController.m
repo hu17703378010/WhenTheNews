@@ -28,6 +28,9 @@
 #define SECOND @"second"
 #define latest @"latest"
 #define hot @"hot"
+
+typedef void(^ExpandClosure)();
+
 @interface TopicDetailViewController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 {
     int flag; //0 最新  1 最热
@@ -57,9 +60,6 @@
 @end
 
 @implementation TopicDetailViewController
-
-
-
 
 - (NSMutableArray *)hotAnswerArray {
     if (!_hotAnswerArray) {
@@ -96,7 +96,6 @@
     return _questionArray;
 }
 
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.backView.alpha = self.alpha;
@@ -111,7 +110,6 @@
     self.backView.alpha = 1.0;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.alpha = 0;
@@ -119,7 +117,7 @@
     backgroundView.backgroundColor = [UIColor colorWithRed:67 green:67 blue:67 alpha:0];
     backgroundView.alpha = self.alpha;
     self.backView = backgroundView;
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:67 green:67 blue:67 alpha:1];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:83 green:89 blue:83 alpha:1];
     UILabel *naLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, CGRectGetWidth([UIScreen mainScreen].bounds) - 100, 20)];
     naLabel.font = [UIFont systemFontOfSize:13];
     self.naLabel = naLabel;
@@ -146,9 +144,8 @@
     
     //下拉加载
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footFresh)];
+
 }
-
-
 
 - (void)footFresh {
     if (flag == 0) {
@@ -165,9 +162,8 @@
 
 - (void)createView {
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 - 64, ScreenWidth, ScreenHeight) style:UITableViewStyleGrouped];
-    
     [self.view addSubview:self.tableView];
-    
+
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 200)];
     view.backgroundColor = [UIColor blackColor];
     view.alpha = 0.5;
@@ -298,12 +294,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         TopicDetailModel *model = self.dataArray[indexPath.row];
-        return 50 + [self stringHeight:model.Description];
+        return 80 + [self stringHeight:model.Description];
     }else {
         if (flag == 0) {
             TopicQuestionModel *model = self.questionArray[indexPath.row];
             TopicAnswerModel *modelA = self.answerArray[indexPath.row];
-            return 70 + [self stringHeight:model.content] + 30 + [self stringHeight:modelA.content];
+            return 70 + [self stringHeight:model.content] + 100 + [self stringHeight:modelA.content];
         }else {
             TopicQuestionModel *model = self.hotQuestionArray[indexPath.row];
             TopicAnswerModel *modelA = self.hotAnswerArray[indexPath.row];
@@ -328,6 +324,8 @@
     if (indexPath.section == 0) {
         TopicDetailModel *model = [self.dataArray objectAtIndex:indexPath.row];
         DetailTopicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:FIRST forIndexPath:indexPath];
+        cell.descriptionLabel.frame = CGRectMake(78, 31, 285, 50);
+        cell.descriptionLabel.frame = CGRectMake(78, 31, 285, [self stringHeight:model.Description]);;
         cell.headImageView.layer.masksToBounds = YES;
         cell.headImageView.layer.cornerRadius = 20;
         NSLog(@"width = %f, height = %f", cell.descriptionLabel.frame.size.width, cell.descriptionLabel.frame.size.height);
@@ -335,7 +333,6 @@
         NSString *str = NSStringFromCGRect(frame);
         NSLog(@"frame = %@", str);
         cell.descriptionLabel.numberOfLines = 0;
-        cell.descriptionLabel.frame = CGRectMake(78, 31, 288, [self stringHeight:model.Description]);
         cell.descriptionLabel.text = model.Description;
         cell.descriptionLabel.font = [UIFont systemFontOfSize:14];
         [self setDataWithModel:model];
@@ -388,6 +385,7 @@
 - (void)createWithCell:(DetailAAndQTableViewCell *)cell Model:(TopicQuestionModel *)model endModel:(TopicAnswerModel *)aModel{
     cell.specialistHeadImageView.frame = CGRectMake(5, [self stringHeight:model.content] + 60, 30, 30);
     cell.specialistNameLabel.frame = CGRectMake(55, [self stringHeight:model.content] + 60, 200, 30);
+    cell.answerContentLabel.frame = CGRectMake(55, [self stringHeight:model.content] + 10 + 80, 285, 50);
     cell.answerContentLabel.frame = CGRectMake(55, [self stringHeight:model.content] + 10 + 80, 285, [self stringHeight:aModel.content]);
     cell.userContentLabel.frame = CGRectMake(55, 30, 285, [self stringHeight:model.content]);
     [cell setDataWithModel:model];
@@ -414,7 +412,6 @@
     }
     self.backView.alpha = alpha;
 }
-
 
 
 - (void)didReceiveMemoryWarning {

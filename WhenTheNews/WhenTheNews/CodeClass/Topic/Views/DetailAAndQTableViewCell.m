@@ -31,6 +31,7 @@
 
 
 - (void)setupCell {
+    
     self.userHeadImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 10, 30, 30)];
     self.userHeadImageView.layer.masksToBounds = YES;
     self.userHeadImageView.layer.cornerRadius = 15;
@@ -59,6 +60,11 @@
     self.answerContentLabel.font = [UIFont systemFontOfSize:14];
     self.answerContentLabel.numberOfLines = 0;
     [self addSubview:self.answerContentLabel];
+    
+//    self.stretchButton = [[UIButton alloc] initWithFrame:CGRectMake(330, 0, 40, 30)];
+//    self.stretchButton.backgroundColor = [UIColor grayColor];
+//    [self addSubview:self.stretchButton];
+    
 }
 
 - (void)setDataWithModel:(TopicQuestionModel *)model {
