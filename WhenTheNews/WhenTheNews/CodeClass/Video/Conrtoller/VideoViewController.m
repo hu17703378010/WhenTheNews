@@ -54,7 +54,7 @@
     
     self.page = 0;
     self.currPage = 0;
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"视频";
     self.automaticallyAdjustsScrollViewInsets = NO;
     _dataArray = [NSArray arrayWithObjects:@"推荐",@"搞笑",@"美女",@"新闻现场",@"萌物",@"体育",@"黑科技",@"八卦", nil];
@@ -241,6 +241,8 @@
     if ([self.arrayArr[_currPage] count]>0) {
         cell.model = self.arrayArr[_currPage][indexPath.row];
         cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         return cell;
     }
     
@@ -268,6 +270,7 @@
         [self.arrayArr[_currPage] removeAllObjects];
     }
     NSString *typeStr =  _falseArray[_currPage];
+    
     
     NSString *string = [NSString stringWithFormat:@"http://c.3g.163.com/nc/video/Tlist/%@/%ld-10.html",typeStr,self.page];
     NSString *pag = [NSString stringWithFormat:@"%ld",self.page];
@@ -306,4 +309,6 @@
     }];
     
 }
+
+
 @end

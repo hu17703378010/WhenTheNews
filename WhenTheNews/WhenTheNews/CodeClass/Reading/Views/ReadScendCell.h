@@ -21,4 +21,7 @@
 
 @property (nonatomic,strong) ReadingModel *model;
 
+@property (nonatomic,strong) UIImageView *backView;
+
+
 @end

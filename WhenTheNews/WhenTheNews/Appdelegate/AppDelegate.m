@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AllCodeClassViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface AppDelegate ()
 
@@ -21,23 +22,36 @@ static AppDelegate *_appDelegate;
     // Override point for customization after application launch.
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor grayColor];
     [self.window makeKeyAndVisible];
     AllCodeClassViewController *allCor = [[AllCodeClassViewController alloc]init];
     self.window.rootViewController = allCor;
-    _appDelegate = self;
-    _redView = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    _redView.backgroundColor = [UIColor blackColor];
-    _redView.alpha = 0.0;
+
+    if (![[NSUserDefaults standardUserDefaults]boolForKey:@"firstStart"]) {
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"firstStart"];
+        
+        NSLog(@"第一次启动");
+        NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        //获取完整路径
+        NSString *documentsPath = [path objectAtIndex:0];
+        NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"collectNews.plist"];
+        
+        NSMutableArray *dataArr = [[NSMutableArray alloc]init];
+        //写入文件
+        [dataArr writeToFile:plistPath atomically:YES];
+        
+        
+        
+    }else{
+        NSLog(@"不是第一次启动");
+    }
 
     
-    
+
     return YES;
 }
 
-+ (AppDelegate *)shareAppDelegate{
-    return _appDelegate;
-}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
