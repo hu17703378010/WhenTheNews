@@ -56,8 +56,6 @@
     [self.view addSubview:self.tableView];
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.bounces = NO;
-    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self createData];
@@ -129,6 +127,8 @@
     TopicModel *model = self.dataArray[indexPath.row];
     TopicDetailViewController *topicVC = [[TopicDetailViewController alloc] init];
     topicVC.expertId = model.expertId;
+    topicVC.title_list = model.title;
+    [topicVC setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:topicVC animated:YES];
 }
 

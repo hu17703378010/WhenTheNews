@@ -30,15 +30,12 @@
 
 @implementation NewsDetailViewController
 
--(void)viewWillAppear:(BOOL)animated{
-    self.tabBarController.tabBar.hidden = YES;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
+      [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -64) forBarMetrics:UIBarMetricsDefault];
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    self.view.backgroundColor = [UIColor lightGrayColor];
-    
-    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight)];
+    self.webView = [[UIWebView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     //self.webView.delegate = self;
     self.webView.backgroundColor = [UIColor blackColor];
     _activity = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleGray)];
@@ -52,6 +49,8 @@
         [self.view addSubview:self.webView];
         
     });
+    
+  
     
     //[self setContentToWebView];
     self.title = self.titleName;

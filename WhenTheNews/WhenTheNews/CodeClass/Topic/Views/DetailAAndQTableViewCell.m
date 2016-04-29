@@ -37,11 +37,11 @@
     self.userHeadImageView.layer.cornerRadius = 15;
     [self addSubview:self.userHeadImageView];
     
-    self.userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 10, 200, 20)];
+    self.userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 10, WIDTH/6*5 - 78, 20)];
     self.userNameLabel.font = [UIFont systemFontOfSize:12];
     [self addSubview:self.userNameLabel];
     
-    self.userContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 30, 285, 20)];
+    self.userContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 30, WIDTH/6*5 - 78, 20)];
     self.userContentLabel.font = [UIFont systemFontOfSize:14];
     self.userContentLabel.numberOfLines = 0;
     [self addSubview:self.userContentLabel];
@@ -52,19 +52,14 @@
     self.specialistHeadImageView.layer.cornerRadius = 15;
     [self addSubview:self.specialistHeadImageView];
     
-    self.specialistNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 10, 200, 20)];
+    self.specialistNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 10, WIDTH/6*5 - 78, 20)];
     self.specialistNameLabel.font = [UIFont systemFontOfSize:12];
     [self addSubview:self.specialistNameLabel];
     
-    self.answerContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 30, 285, 20)];
+    self.answerContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 30, WIDTH/6*5 - 78, 20)];
     self.answerContentLabel.font = [UIFont systemFontOfSize:14];
     self.answerContentLabel.numberOfLines = 0;
     [self addSubview:self.answerContentLabel];
-    
-//    self.stretchButton = [[UIButton alloc] initWithFrame:CGRectMake(330, 0, 40, 30)];
-//    self.stretchButton.backgroundColor = [UIColor grayColor];
-//    [self addSubview:self.stretchButton];
-    
 }
 
 - (void)setDataWithModel:(TopicQuestionModel *)model {

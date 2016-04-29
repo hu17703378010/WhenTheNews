@@ -12,6 +12,7 @@
 		C207E32B1CC71EF2008225A9 /* ReadScendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C207E32A1CC71EF2008225A9 /* ReadScendCell.m */; };
 		C207E3701CC78044008225A9 /* CacheModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C207E36F1CC78044008225A9 /* CacheModel.m */; settings = {ASSET_TAGS = (); }; };
 		C21723D41CC8D77C003C5EF0 /* UIWebView+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = C21723D31CC8D77C003C5EF0 /* UIWebView+HTML.m */; settings = {ASSET_TAGS = (); }; };
+		C2179F5E1CD2276A0057576E /* AnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2179F5D1CD2276A0057576E /* AnimationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C22126F51CC10B8A00614944 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C22126F41CC10B8A00614944 /* main.m */; };
 		C22126FE1CC10B8A00614944 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C22126FC1CC10B8A00614944 /* Main.storyboard */; };
 		C22127001CC10B8A00614944 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C22126FF1CC10B8A00614944 /* Assets.xcassets */; };
@@ -119,6 +120,8 @@
 		C214587E1CC1CE720034944F /* EfficientDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EfficientDefine.h; sourceTree = "<group>"; };
 		C21723D21CC8D77C003C5EF0 /* UIWebView+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+HTML.h"; sourceTree = "<group>"; };
 		C21723D31CC8D77C003C5EF0 /* UIWebView+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+HTML.m"; sourceTree = "<group>"; };
+		C2179F5C1CD2276A0057576E /* AnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationViewController.h; sourceTree = "<group>"; };
+		C2179F5D1CD2276A0057576E /* AnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationViewController.m; sourceTree = "<group>"; };
 		C22126F01CC10B8A00614944 /* WhenTheNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhenTheNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C22126F41CC10B8A00614944 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C22126FD1CC10B8A00614944 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -388,6 +391,8 @@
 			children = (
 				C22127AA1CC1276500614944 /* AllCodeClassViewController.h */,
 				C22127AB1CC1276500614944 /* AllCodeClassViewController.m */,
+				C2179F5C1CD2276A0057576E /* AnimationViewController.h */,
+				C2179F5D1CD2276A0057576E /* AnimationViewController.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1007,6 +1012,7 @@
 				C2DA7FB11CC4CF91008B9292 /* UIScrollView+MJRefresh.m in Sources */,
 				C2DA7FA91CC4CF91008B9292 /* MJRefreshBackNormalFooter.m in Sources */,
 				C207E3281CC71ECE008225A9 /* readFristCell.m in Sources */,
+				C2179F5E1CD2276A0057576E /* AnimationViewController.m in Sources */,
 				C2DA7FA21CC4CF91008B9292 /* MJRefreshComponent.m in Sources */,
 				C2DA7FAC1CC4CF91008B9292 /* MJRefreshNormalHeader.m in Sources */,
 				C23408631CC9C3940065E8E6 /* CollectionButton.m in Sources */,

@@ -10,5 +10,5 @@
 
 @interface TopicDetailViewController : UIViewController
 @property (nonatomic,strong) NSString *expertId;
-
+@property (nonatomic,strong) NSString *title_list;
 @end

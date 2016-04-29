@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "whennews.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "话题.png",
       "scale" : "2x"
     },
     {

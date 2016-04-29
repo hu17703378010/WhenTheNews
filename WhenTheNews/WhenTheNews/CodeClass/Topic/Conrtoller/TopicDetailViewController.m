@@ -118,10 +118,7 @@ typedef void(^ExpandClosure)();
     backgroundView.alpha = self.alpha;
     self.backView = backgroundView;
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:83 green:89 blue:83 alpha:1];
-    UILabel *naLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, CGRectGetWidth([UIScreen mainScreen].bounds) - 100, 20)];
-    naLabel.font = [UIFont systemFontOfSize:13];
-    self.naLabel = naLabel;
-    [self.navigationController.navigationBar addSubview:self.naLabel];
+    self.title = self.title_list;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"<-" style:UIBarButtonItemStyleDone target:self action:@selector(leftAction)];
 
     flag = 0;
@@ -130,7 +127,7 @@ typedef void(^ExpandClosure)();
     
     self.segment = [[UISegmentedControl alloc] initWithItems:@[@"最新", @"最热"]];
     self.segment.selectedSegmentIndex = 0;
-    self.segment.frame = CGRectMake(270, 5, 100, 30);
+    self.segment.frame = CGRectMake(ScreenWidth/6*4, 0, ScreenWidth/6*2-5, 30);
     [self.segment addTarget:self action:@selector(changeAction:) forControlEvents:UIControlEventValueChanged];
 
     [self createView];
@@ -140,7 +137,7 @@ typedef void(^ExpandClosure)();
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.bounces = NO;
+
     [self.tableView registerClass:[DetailTopicTableViewCell class] forCellReuseIdentifier:FIRST];
     [self.tableView registerClass:[DetailAAndQTableViewCell class] forCellReuseIdentifier:SECOND];
     
@@ -163,7 +160,7 @@ typedef void(^ExpandClosure)();
 }
 
 - (void)createView {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 - 64, ScreenWidth, ScreenHeight) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 - 64, ScreenWidth, ScreenHeight + 64) style:UITableViewStyleGrouped];
     [self.view addSubview:self.tableView];
 
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 200)];
@@ -326,8 +323,7 @@ typedef void(^ExpandClosure)();
     if (indexPath.section == 0) {
         TopicDetailModel *model = [self.dataArray objectAtIndex:indexPath.row];
         DetailTopicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:FIRST forIndexPath:indexPath];
-        cell.descriptionLabel.frame = CGRectMake(78, 31, 285, 50);
-        cell.descriptionLabel.frame = CGRectMake(78, 31, 285, [self stringHeight:model.Description]);;
+        cell.descriptionLabel.frame = CGRectMake(78, 31, (ScreenWidth-55)/6*5, [self stringHeight:model.Description]);
         cell.headImageView.layer.masksToBounds = YES;
         cell.headImageView.layer.cornerRadius = 20;
         NSLog(@"width = %f, height = %f", cell.descriptionLabel.frame.size.width, cell.descriptionLabel.frame.size.height);
@@ -339,6 +335,8 @@ typedef void(^ExpandClosure)();
         cell.descriptionLabel.font = [UIFont systemFontOfSize:14];
         [self setDataWithModel:model];
         [cell setDataWithModel:model];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.selected = NO;
         return cell;
     }else{
         DetailAAndQTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SECOND forIndexPath:indexPath];
@@ -350,14 +348,17 @@ typedef void(^ExpandClosure)();
             TopicQuestionModel *moddel1 = self.hotQuestionArray[indexPath.row];
             TopicAnswerModel *modelA = self.hotAnswerArray[indexPath.row];
             [self createWithCell:cell Model:moddel1 endModel:modelA];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.selected = NO;
         }
         return cell;
     }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 44)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 34)];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth/5*3, 34)];
+//    headerLabel.backgroundColor = [UIColor redColor];
     headerLabel.textColor = [UIColor grayColor];
     headerLabel.font = [UIFont systemFontOfSize:12];
     if (section == 1) {
@@ -373,23 +374,23 @@ typedef void(^ExpandClosure)();
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
     if (section == 1) {
-        return 44;
+        return 34;
     }
     return 0;
 }
 
 //自适应高度
 - (CGFloat)stringHeight:(NSString *)string {
-    CGRect temp = [string boundingRectWithSize:CGSizeMake(285, 1000000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
+    CGRect temp = [string boundingRectWithSize:CGSizeMake((ScreenWidth-55)/6*5, 1000000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
     return temp.size.height;
 }
 
 - (void)createWithCell:(DetailAAndQTableViewCell *)cell Model:(TopicQuestionModel *)model endModel:(TopicAnswerModel *)aModel{
     cell.specialistHeadImageView.frame = CGRectMake(5, [self stringHeight:model.content] + 60, 30, 30);
-    cell.specialistNameLabel.frame = CGRectMake(55, [self stringHeight:model.content] + 60, 200, 30);
-    cell.answerContentLabel.frame = CGRectMake(55, [self stringHeight:model.content] + 10 + 80, 285, 50);
-    cell.answerContentLabel.frame = CGRectMake(55, [self stringHeight:model.content] + 10 + 80, 285, [self stringHeight:aModel.content]);
-    cell.userContentLabel.frame = CGRectMake(55, 30, 285, [self stringHeight:model.content]);
+    cell.specialistNameLabel.frame = CGRectMake(55, [self stringHeight:model.content] + 60, (ScreenWidth-35)/6*5, 30);
+    cell.answerContentLabel.frame = CGRectMake(55, [self stringHeight:model.content] + 10 + 80, (ScreenWidth-35)/6*5, 50);
+    cell.answerContentLabel.frame = CGRectMake(55, [self stringHeight:model.content] + 10 + 80, (ScreenWidth-35)/6*5 , [self stringHeight:aModel.content]);
+    cell.userContentLabel.frame = CGRectMake(55, 30, (ScreenWidth-35)/6*5, [self stringHeight:model.content]);
     [cell setDataWithModel:model];
     [cell setDataWithAnswerModel:aModel];
 }

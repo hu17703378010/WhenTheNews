@@ -46,20 +46,13 @@
 
 @implementation NewsViewController
 
-
--(void)viewWillAppear:(BOOL)animated{
-    self.tabBarController.tabBar.hidden = NO;
-}
-
-
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.listArray = [NSMutableArray array];
     self.title = @"新闻";
     self.headerArray = @[@"独家",@"娱乐",@"科技",@"财经",@"时尚",@"军事",@"历史",@"家具",@"体育"];
     self.newsArray = @[EXCLUSIVE_URL,ENTERTAINMENT_URL,SCIENCE_URL,FINANCE_URL,FASHION_URL,MILITARY_URL,HISTORY_URL,FURNITURE_URL,SPORTS_URL];
-    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.page = 0;
     self.isRefesh = YES;
     [self loadHeaderView];
@@ -74,15 +67,6 @@
             [self.tabble.mj_header beginRefreshing];
         }
     });
-    
-    
-    
-    //self.tabble = [self.newsScrollView viewWithTag:];
-    
-    //self.headerScrollView.backgroundColor = [UIColor redColor];
-    
-    //[self requestSessionData:EASYMOMENT_URL];
-    //[self setMoreAndNew];
 }
 
 #pragma mark - 刷新加载
@@ -109,7 +93,7 @@
 
 #pragma mark - 标签视图
 - (void)loadHeaderView{
-    self.headerScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, 30)];
+    self.headerScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 30)];
     self.headerScrollView.contentSize = CGSizeMake(self.headerArray.count * ScreenWidth/4, 0);
     self.headerScrollView.showsHorizontalScrollIndicator = NO;
     self.headerScrollView.contentOffset = CGPointMake(0, 0);
@@ -138,6 +122,7 @@
     lineView.backgroundColor = [UIColor redColor];
     [self.headerScrollView addSubview:lineView];
     [self.view addSubview:self.headerScrollView];
+    
     
 }
 
@@ -279,11 +264,10 @@
     if (model.photosetID!=nil) {
         return 150;
     }else if (model.imgType !=nil){
-        
-        return 200;
+        return 180;
     }else{
         
-        return 130;
+        return 120;
     }
     return 0;
 }
@@ -301,10 +285,12 @@
     
     if (model.url||model.imgType) {
         newsDVC.docid = model.docid;
+        [newsDVC setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:newsDVC animated:YES];
         
     }else{
         cyclePhotoVC.photo_skipID = model.skipID;
+        [cyclePhotoVC setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:cyclePhotoVC animated:YES];
 
     }

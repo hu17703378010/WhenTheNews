@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AllCodeClassViewController.h"
+#import "AnimationViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface AppDelegate ()
@@ -24,12 +25,37 @@ static AppDelegate *_appDelegate;
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor grayColor];
     [self.window makeKeyAndVisible];
-    AllCodeClassViewController *allCor = [[AllCodeClassViewController alloc]init];
-    self.window.rootViewController = allCor;
+    
+    if (![[NSUserDefaults standardUserDefaults]boolForKey:@"firstStart"]) {
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"firstStart"];
+        
+        NSLog(@"第一次启动");
+        self.window.rootViewController = [[AnimationViewController alloc]init];
+        [NSTimer  scheduledTimerWithTimeInterval:5 target:self selector:@selector(timeRaciton:) userInfo:nil repeats:NO];
+        
+    }else{
+        NSLog(@"不是第一次启动");
+        AllCodeClassViewController *allCor = [[AllCodeClassViewController alloc]init];
+        self.window.rootViewController = allCor;
+    }
+    
+    
+    
+    
+    
     return YES;
 }
 
-
+-(void)timeRaciton:(NSTimer *)timer{
+    
+    AllCodeClassViewController *vc = [[AllCodeClassViewController alloc]init];
+    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
+    [self.window.rootViewController presentViewController:vc animated:YES completion:^{
+        
+    }];
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

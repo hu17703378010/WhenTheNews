@@ -53,7 +53,7 @@
         _imageScrollView.showsHorizontalScrollIndicator = NO;
         _imageScrollView.showsVerticalScrollIndicator = NO;
         _imageScrollView.pagingEnabled = YES;
-        _imageScrollView.contentOffset = CGPointMake(kAutoViewWidth, 0);
+        _imageScrollView.contentOffset = CGPointMake(kAutoViewWidth, 1);
         _imageScrollView.contentSize = CGSizeMake(kAutoViewWidth * 3, kAutoViewHeight);
         _imageScrollView.delegate = self;
         
@@ -246,7 +246,7 @@
             _centerImageLabel.text = _imageTitleArray[centerImageIndex];
         }
     }
-    _imageScrollView.contentOffset = CGPointMake(kAutoViewWidth, 0);
+    _imageScrollView.contentOffset = CGPointMake(kAutoViewWidth, 1);
     
     
     //手动控制图片滚动应该取消那个2.0s的计时器

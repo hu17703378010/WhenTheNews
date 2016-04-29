@@ -30,10 +30,6 @@
 
 @implementation CyclePhotoViewController
 
-
--(void)viewWillAppear:(BOOL)animated{
-    self.tabBarController.tabBar.hidden = YES;
-}
 -(NSMutableArray *)imageArray{
     if (!_imageArray) {
         _imageArray = [NSMutableArray array];
@@ -53,6 +49,8 @@
     self.view.backgroundColor = [UIColor blackColor];
     self.title = self.title_name;
 //    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]}];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     
     [self setClooectionItem];
     [self requestData];
@@ -148,7 +146,7 @@
 }
 
 -(void)setCycleviewInTheView{
-    self.cycleView = [AutoView imageScrollViewWithFrame:[UIScreen mainScreen].bounds imageLinkURL:self.imageArray titleArr:self.titleArray placeHolderImageName:nil pageControlShowStyle:(UIPageControlShowStyleNone)];
+    self.cycleView = [AutoView imageScrollViewWithFrame:self.view.bounds imageLinkURL:self.imageArray titleArr:self.titleArray placeHolderImageName:nil pageControlShowStyle:(UIPageControlShowStyleNone)];
     
     self.cycleView.isNeedCycleRoll = NO;
     [self.view addSubview:self.cycleView];
